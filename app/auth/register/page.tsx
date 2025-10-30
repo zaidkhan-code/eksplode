@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card } from "@/components/ui/card"
-import { Logo } from "@/components/logo"
-import { Eye, EyeOff } from "lucide-react"
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
+import { Logo } from "@/components/logo";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function RegisterPage() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [role, setRole] = useState("user")
+  const [showPassword, setShowPassword] = useState(false);
+  const [role, setRole] = useState("user");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
-  })
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Register attempt:", { ...formData, role })
-  }
+    e.preventDefault();
+    console.log("Register attempt:", { ...formData, role });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-black to-red-950 flex items-center justify-center p-4">
@@ -36,8 +36,10 @@ export default function RegisterPage() {
 
           {/* Title */}
           <div className="text-center space-y-2">
-            <h1 className="text-3xl font-bold text-white">Join Eksplode!</h1>
-            <p className="text-gray-400">Create your account and start earning</p>
+            <h1 className="text-3xl font-bold text-white">Join eksplode!</h1>
+            <p className="text-gray-400">
+              Create your account and start earning
+            </p>
           </div>
 
           {/* Form */}
@@ -64,12 +66,16 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-white">Full Name</label>
+              <label className="text-sm font-medium text-white">
+                Full Name
+              </label>
               <Input
                 type="text"
                 placeholder="John Doe"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
                 className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-600 focus:border-red-500"
               />
             </div>
@@ -80,7 +86,9 @@ export default function RegisterPage() {
                 type="email"
                 placeholder="you@example.com"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-600 focus:border-red-500"
               />
             </div>
@@ -92,7 +100,9 @@ export default function RegisterPage() {
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
                   className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-600 focus:border-red-500 pr-10"
                 />
                 <button
@@ -100,28 +110,42 @@ export default function RegisterPage() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 transition"
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
                 </button>
               </div>
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-white">Confirm Password</label>
+              <label className="text-sm font-medium text-white">
+                Confirm Password
+              </label>
               <Input
                 type="password"
                 placeholder="••••••••"
                 value={formData.confirmPassword}
-                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, confirmPassword: e.target.value })
+                }
                 className="bg-black/50 border-red-500/30 text-white placeholder:text-gray-600 focus:border-red-500"
               />
             </div>
 
             <label className="flex items-center gap-2 text-sm text-gray-400 cursor-pointer hover:text-white transition">
-              <input type="checkbox" className="w-4 h-4 rounded border-red-500/30 bg-black/50" />I agree to the Terms of
-              Service
+              <input
+                type="checkbox"
+                className="w-4 h-4 rounded border-red-500/30 bg-black/50"
+              />
+              I agree to the Terms of Service
             </label>
 
-            <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2">
+            <Button
+              type="submit"
+              className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2"
+            >
               Create Account
             </Button>
           </form>
@@ -129,12 +153,15 @@ export default function RegisterPage() {
           {/* Sign In Link */}
           <div className="text-center text-sm text-gray-400">
             Already have an account?{" "}
-            <Link href="/login" className="text-red-500 hover:text-red-400 transition font-medium">
+            <Link
+              href="/login"
+              className="text-red-500 hover:text-red-400 transition font-medium"
+            >
               Sign in
             </Link>
           </div>
         </div>
       </Card>
     </div>
-  )
+  );
 }

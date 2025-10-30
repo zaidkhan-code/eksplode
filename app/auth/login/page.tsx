@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card } from "@/components/ui/card"
-import { Logo } from "@/components/logo"
-import { Eye, EyeOff } from "lucide-react"
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
+import { Logo } from "@/components/logo";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // API call will be integrated here
-    console.log("Login attempt:", { email, password })
-  }
+    console.log("Login attempt:", { email, password });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-black to-red-950 flex items-center justify-center p-4">
@@ -33,7 +33,7 @@ export default function LoginPage() {
           {/* Title */}
           <div className="text-center space-y-2">
             <h1 className="text-3xl font-bold text-white">Welcome Back</h1>
-            <p className="text-gray-400">Sign in to your Eksplode! account</p>
+            <p className="text-gray-400">Sign in to your eksplode! account</p>
           </div>
 
           {/* Form */}
@@ -64,22 +64,35 @@ export default function LoginPage() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 transition"
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
                 </button>
               </div>
             </div>
 
             <div className="flex items-center justify-between text-sm">
               <label className="flex items-center gap-2 text-gray-400 cursor-pointer hover:text-white transition">
-                <input type="checkbox" className="w-4 h-4 rounded border-red-500/30 bg-black/50" />
+                <input
+                  type="checkbox"
+                  className="w-4 h-4 rounded border-red-500/30 bg-black/50"
+                />
                 Remember me
               </label>
-              <Link href="/forgot-password" className="text-red-500 hover:text-red-400 transition">
+              <Link
+                href="/forgot-password"
+                className="text-red-500 hover:text-red-400 transition"
+              >
                 Forgot password?
               </Link>
             </div>
 
-            <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2">
+            <Button
+              type="submit"
+              className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2"
+            >
               Sign In
             </Button>
           </form>
@@ -90,7 +103,9 @@ export default function LoginPage() {
               <div className="w-full border-t border-red-500/20"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-black text-gray-400">New to Eksplode?</span>
+              <span className="px-2 bg-black text-gray-400">
+                New to Eksplode?
+              </span>
             </div>
           </div>
 
@@ -106,5 +121,5 @@ export default function LoginPage() {
         </div>
       </Card>
     </div>
-  )
+  );
 }
