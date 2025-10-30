@@ -1,28 +1,18 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Logo } from "./logo";
-import {
-  LayoutDashboard,
-  ShoppingBag,
-  User,
-  LogOut,
-  Menu,
-  X,
-  CreditCard,
-  FileText,
-  Settings,
-} from "lucide-react";
-import { useState } from "react";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Logo } from "./logo"
+import { LayoutDashboard, ShoppingBag, User, LogOut, Menu, X, CreditCard, FileText, Settings } from "lucide-react"
+import { useState } from "react"
 
 interface SidebarProps {
-  role: "user" | "merchant" | "admin";
+  role: "user" | "merchant" | "admin"
 }
 
 export function Sidebar({ role }: SidebarProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname()
 
   const menuItems = {
     user: [
@@ -32,17 +22,9 @@ export function Sidebar({ role }: SidebarProps) {
       { label: "Profile", href: "/user/profile", icon: User },
     ],
     merchant: [
-      {
-        label: "Dashboard",
-        href: "/merchant/dashboard",
-        icon: LayoutDashboard,
-      },
+      { label: "Dashboard", href: "/merchant/dashboard", icon: LayoutDashboard },
       { label: "Products", href: "/merchant/products", icon: ShoppingBag },
-      {
-        label: "Create Product",
-        href: "/merchant/create-product",
-        icon: FileText,
-      },
+      { label: "Create Product", href: "/merchant/create-product", icon: FileText },
       { label: "Profile", href: "/merchant/profile", icon: User },
     ],
     admin: [
@@ -51,16 +33,16 @@ export function Sidebar({ role }: SidebarProps) {
       { label: "Payouts", href: "/admin/payouts", icon: CreditCard },
       { label: "Adjustments", href: "/admin/adjustments", icon: Settings },
     ],
-  };
+  }
 
-  const items = menuItems[role];
+  const items = menuItems[role]
 
   return (
     <>
       {/* Mobile Menu Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden fixed top-5 right-4 z-50 p-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
@@ -73,19 +55,15 @@ export function Sidebar({ role }: SidebarProps) {
       >
         <div className="space-y-8 h-full flex flex-col">
           {/* Logo */}
-          <Link
-            href="/"
-            onClick={() => setIsOpen(false)}
-            className="flex-shrink-0"
-          >
+          <Link href="/" onClick={() => setIsOpen(false)} className="flex-shrink-0">
             <Logo size="md" />
           </Link>
 
           {/* Navigation */}
           <nav className="space-y-2 flex-1">
             {items.map((item) => {
-              const Icon = item.icon;
-              const isActive = pathname === item.href;
+              const Icon = item.icon
+              const isActive = pathname === item.href
               return (
                 <Link
                   key={item.href}
@@ -100,7 +78,7 @@ export function Sidebar({ role }: SidebarProps) {
                   <Icon className="w-5 h-5 flex-shrink-0" />
                   <span className="font-medium">{item.label}</span>
                 </Link>
-              );
+              )
             })}
           </nav>
 
@@ -115,12 +93,7 @@ export function Sidebar({ role }: SidebarProps) {
       </aside>
 
       {/* Mobile Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 md:hidden z-30"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+      {isOpen && <div className="fixed inset-0 bg-black/50 md:hidden z-30" onClick={() => setIsOpen(false)} />}
     </>
-  );
+  )
 }

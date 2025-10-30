@@ -1,14 +1,15 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { PageHeader } from "@/components/page-header"
-import { Plus, CheckCircle, Clock, X } from "lucide-react"
+import { DataTable } from "@/components/data-table"
+import { formatCurrency, formatDate } from "@/lib/utils"
+import { Plus, CheckCircle, Clock, X, Search } from "lucide-react"
 
 interface Payout {
   id: string
@@ -26,7 +27,7 @@ const mockPayouts: Payout[] = [
     id: "1",
     userId: "user_001",
     userName: "John Doe",
-    amount: 500,
+    amount: 50000,
     method: "bank_transfer",
     status: "completed",
     date: "2024-01-15",
@@ -36,7 +37,7 @@ const mockPayouts: Payout[] = [
     id: "2",
     userId: "user_002",
     userName: "Jane Smith",
-    amount: 300,
+    amount: 30000,
     method: "stripe",
     status: "pending",
     date: "2024-01-14",
@@ -46,23 +47,40 @@ const mockPayouts: Payout[] = [
     id: "3",
     userId: "user_003",
     userName: "Mike Johnson",
-    amount: 750,
+    amount: 75000,
     method: "paypal",
     status: "completed",
     date: "2024-01-13",
     reference: "TXN-2024-003",
+  },
+  {
+    id: "4",
+    userId: "user_004",
+    userName: "Sarah Williams",
+    amount: 45000,
+    method: "bank_transfer",
+    status: "failed",
+    date: "2024-01-12",
+    reference: "TXN-2024-004",
   },
 ]
 
 export default function PayoutsPage() {
   const [payouts, setPayouts] = useState<Payout[]>(mockPayouts)
   const [showModal, setShowModal] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("")
   const [formData, setFormData] = useState({
     userId: "",
     userName: "",
     amount: "",
     method: "bank_transfer" as "bank_transfer" | "stripe" | "paypal",
   })
+
+  const filtered = payouts.filter(
+    (payout) =>
+      payout.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      payout.userId.toLowerCase().includes(searchTerm.toLowerCase()),
+  )
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -81,7 +99,7 @@ export default function PayoutsPage() {
       id: String(payouts.length + 1),
       userId: formData.userId,
       userName: formData.userName,
-      amount: Number(formData.amount),
+      amount: Number(formData.amount) * 100,
       method: formData.method,
       status: "pending",
       date: new Date().toISOString().split("T")[0],
@@ -106,40 +124,107 @@ export default function PayoutsPage() {
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid gap-4">
-          {payouts.map((payout) => (
-            <Card key={payout.id} className="bg-black border-red-500/20 hover:border-red-500/40 transition">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between gap-4 flex-wrap">
-                  <div className="flex items-center gap-4 flex-1 min-w-0">
-                    <div className="flex-1">
-                      <p className="font-semibold text-white truncate">{payout.userName}</p>
-                      <p className="text-sm text-gray-400">{payout.reference}</p>
-                      <p className="text-xs text-gray-500 mt-1">
-                        Method: {payout.method.replace("_", " ").toUpperCase()}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4 flex-shrink-0">
-                    <div className="text-right">
-                      <p className="text-lg font-bold text-red-500">${payout.amount}</p>
-                      <p className="text-xs text-gray-400">{payout.date}</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {getStatusIcon(payout.status)}
-                      <Badge
-                        className={
-                          payout.status === "completed" ? "bg-green-600 text-white" : "bg-yellow-600 text-white"
-                        }
-                      >
-                        {payout.status}
-                      </Badge>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
+        <div className="space-y-6">
+          <div className="flex gap-2">
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+              <Input
+                placeholder="Search by username or user ID..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 bg-black border-red-500/20 text-white"
+              />
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="grid md:grid-cols-4 gap-4">
+            <Card className="bg-black border-red-500/20 p-4">
+              <p className="text-gray-400 text-sm">Total Payouts</p>
+              <p className="text-2xl font-bold text-white mt-1">{payouts.length}</p>
             </Card>
-          ))}
+            <Card className="bg-black border-red-500/20 p-4">
+              <p className="text-gray-400 text-sm">Completed</p>
+              <p className="text-2xl font-bold text-green-400 mt-1">
+                {payouts.filter((p) => p.status === "completed").length}
+              </p>
+            </Card>
+            <Card className="bg-black border-red-500/20 p-4">
+              <p className="text-gray-400 text-sm">Pending</p>
+              <p className="text-2xl font-bold text-yellow-400 mt-1">
+                {payouts.filter((p) => p.status === "pending").length}
+              </p>
+            </Card>
+            <Card className="bg-black border-red-500/20 p-4">
+              <p className="text-gray-400 text-sm">Total Amount</p>
+              <p className="text-2xl font-bold text-red-400 mt-1">
+                {formatCurrency(payouts.reduce((sum, p) => sum + p.amount, 0))}
+              </p>
+            </Card>
+          </div>
+
+          <Card className="bg-black border-red-500/20">
+            <CardContent className="p-0">
+              <DataTable
+                data={filtered}
+                columns={[
+                  {
+                    key: "userName",
+                    label: "User Name",
+                    sortable: true,
+                  },
+                  {
+                    key: "userId",
+                    label: "User ID",
+                  },
+                  {
+                    key: "amount",
+                    label: "Amount",
+                    render: (value) => <span className="text-red-400 font-semibold">{formatCurrency(value)}</span>,
+                    sortable: true,
+                  },
+                  {
+                    key: "method",
+                    label: "Method",
+                    render: (value) => (
+                      <Badge className="bg-blue-600/20 text-blue-400 border border-blue-500/30">
+                        {value.replace("_", " ").toUpperCase()}
+                      </Badge>
+                    ),
+                  },
+                  {
+                    key: "status",
+                    label: "Status",
+                    render: (value) => (
+                      <div className="flex items-center gap-2">
+                        {getStatusIcon(value)}
+                        <Badge
+                          className={
+                            value === "completed"
+                              ? "bg-green-600 text-white"
+                              : value === "pending"
+                                ? "bg-yellow-600 text-white"
+                                : "bg-red-600 text-white"
+                          }
+                        >
+                          {value}
+                        </Badge>
+                      </div>
+                    ),
+                  },
+                  {
+                    key: "date",
+                    label: "Date",
+                    render: (value) => formatDate(value),
+                  },
+                  {
+                    key: "reference",
+                    label: "Reference",
+                  },
+                ]}
+              />
+            </CardContent>
+          </Card>
         </div>
       </main>
 
@@ -182,6 +267,7 @@ export default function PayoutsPage() {
                   <Input
                     type="number"
                     placeholder="0.00"
+                    step="0.01"
                     value={formData.amount}
                     onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
                     className="mt-2 bg-black border-red-500/20 text-white"

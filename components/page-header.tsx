@@ -1,10 +1,10 @@
-import type React from "react";
-import { Logo } from "./logo";
+import type React from "react"
+import { Logo } from "./logo"
 
 interface PageHeaderProps {
-  title: string;
-  description?: string;
-  action?: React.ReactNode;
+  title: string
+  description?: string
+  action?: React.ReactNode
 }
 
 export function PageHeader({ title, description, action }: PageHeaderProps) {
@@ -13,17 +13,15 @@ export function PageHeader({ title, description, action }: PageHeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            {/* <Logo size="sm" /> */}
+            <Logo size="sm" />
             <div>
               <h1 className="text-3xl font-bold text-white">{title}</h1>
-              {description && (
-                <p className="text-sm text-gray-400 mt-1">{description}</p>
-              )}
+              {description && <p className="text-sm text-gray-400 mt-1">{description}</p>}
             </div>
           </div>
           {action && <div className="flex-shrink-0">{action}</div>}
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Logo } from "@/components/logo";
-import { ArrowRight, Zap, Users, TrendingUp } from "lucide-react";
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Logo } from "@/components/logo"
+import { ArrowRight, Zap, Users, TrendingUp } from "lucide-react"
 
 export default function HomePage() {
   return (
@@ -11,23 +11,15 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <Logo size="md" />
           <div className="hidden md:flex gap-8">
-            <Link
-              href="/products"
-              className="text-white hover:text-red-500 transition"
-            >
+            <Link href="/products" className="text-white hover:text-red-500 transition">
               Products
             </Link>
-            <Link
-              href="/login"
-              className="text-white hover:text-red-500 transition"
-            >
+            <Link href="/login" className="text-white hover:text-red-500 transition">
               Login
             </Link>
           </div>
           <Link href="/register">
-            <Button className="bg-red-600 hover:bg-red-700 text-white">
-              Get Started
-            </Button>
+            <Button className="bg-red-600 hover:bg-red-700 text-white">Get Started</Button>
           </Link>
         </div>
       </nav>
@@ -43,21 +35,17 @@ export default function HomePage() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
-            Explosive Growth for Your{" "}
-            <span className="text-red-500">Business</span>
+            Explosive Growth for Your <span className="text-red-500">Business</span>
           </h1>
 
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            eksplode! DAC is the ultimate digital referral and reward platform.
-            Earn rewards, share products, and grow your network exponentially.
+            Eksplode! DAC is the ultimate digital referral and reward platform. Earn rewards, share products, and grow
+            your network exponentially.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
             <Link href="/products">
-              <Button
-                size="lg"
-                className="bg-red-600 hover:bg-red-700 text-white w-full sm:w-auto"
-              >
+              <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white w-full sm:w-auto">
                 Explore Products <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
@@ -79,30 +67,20 @@ export default function HomePage() {
         <div className="grid md:grid-cols-3 gap-8">
           <div className="bg-red-900/10 border border-red-500/20 rounded-lg p-8 hover:border-red-500/50 transition">
             <Users className="w-12 h-12 text-red-500 mb-4" />
-            <h3 className="text-xl font-bold text-white mb-2">
-              Referral Network
-            </h3>
-            <p className="text-gray-400">
-              Build your network and earn rewards for every successful referral.
-            </p>
+            <h3 className="text-xl font-bold text-white mb-2">Referral Network</h3>
+            <p className="text-gray-400">Build your network and earn rewards for every successful referral.</p>
           </div>
 
           <div className="bg-red-900/10 border border-red-500/20 rounded-lg p-8 hover:border-red-500/50 transition">
             <TrendingUp className="w-12 h-12 text-red-500 mb-4" />
             <h3 className="text-xl font-bold text-white mb-2">Track Growth</h3>
-            <p className="text-gray-400">
-              Real-time analytics and insights into your earnings and referrals.
-            </p>
+            <p className="text-gray-400">Real-time analytics and insights into your earnings and referrals.</p>
           </div>
 
           <div className="bg-red-900/10 border border-red-500/20 rounded-lg p-8 hover:border-red-500/50 transition">
             <Zap className="w-12 h-12 text-red-500 mb-4" />
-            <h3 className="text-xl font-bold text-white mb-2">
-              Instant Rewards
-            </h3>
-            <p className="text-gray-400">
-              Earn and withdraw rewards instantly with multiple payment options.
-            </p>
+            <h3 className="text-xl font-bold text-white mb-2">Instant Rewards</h3>
+            <p className="text-gray-400">Earn and withdraw rewards instantly with multiple payment options.</p>
           </div>
         </div>
       </section>
@@ -111,14 +89,9 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
         <div className="bg-gradient-to-r from-red-600 to-red-700 rounded-lg p-12 space-y-6">
           <h2 className="text-4xl font-bold text-white">Ready to Explode?</h2>
-          <p className="text-red-100 text-lg">
-            Join thousands of users earning rewards with eksplode! DAC
-          </p>
+          <p className="text-red-100 text-lg">Join thousands of users earning rewards with Eksplode! DAC</p>
           <Link href="/register">
-            <Button
-              size="lg"
-              className="bg-black hover:bg-black/80 text-red-500 font-bold"
-            >
+            <Button size="lg" className="bg-black hover:bg-black/80 text-red-500 font-bold">
               Start Your Journey
             </Button>
           </Link>
@@ -141,12 +114,10 @@ export default function HomePage() {
                 Contact
               </Link>
             </div>
-            <p className="text-gray-500 text-sm">
-              © 2025 eksplode! DAC. All rights reserved.
-            </p>
+            <p className="text-gray-500 text-sm">© 2025 Eksplode! DAC. All rights reserved.</p>
           </div>
         </div>
       </footer>
     </div>
-  );
+  )
 }
