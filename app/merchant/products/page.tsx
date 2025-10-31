@@ -10,6 +10,7 @@ import Link from "next/link";
 import useApi from "@/lib/useApi";
 import { toast } from "sonner";
 import Image from "next/image";
+import Loader from "@/components/Loader";
 
 interface Product {
   _id: string;
@@ -24,10 +25,7 @@ interface Product {
 export default function MerchantProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-
-  // ✅ Fetch all products on mount
-  useEffect(() => {
-    setLoading(true);
+  function GetProductList() {
     useApi(
       "merchant/products", // your API endpoint e.g. /product or /merchant/products
       { method: "GET" },
@@ -40,7 +38,26 @@ export default function MerchantProductsPage() {
         }
       }
     );
+  }
+  useEffect(() => {
+    setLoading(true);
+    GetProductList();
   }, []);
+  function DeleteProduct(id) {
+    useApi(
+      `merchant/product/${id}`, // your API endpoint e.g. /product or /merchant/products
+      { method: "delete" },
+      (res: any, status: boolean) => {
+        // setLoading(false);
+        if (status) {
+          GetProductList();
+          toast.success(res?.message || "Failed to delete product");
+        } else {
+          toast.error(res?.message || "Failed to delete product");
+        }
+      }
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black">
@@ -59,7 +76,7 @@ export default function MerchantProductsPage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {loading ? (
-          <p className="text-center text-gray-400">Loading products...</p>
+          <Loader loading={loading} />
         ) : products.length === 0 ? (
           <p className="text-center text-gray-400">No products found.</p>
         ) : (
@@ -70,17 +87,24 @@ export default function MerchantProductsPage() {
                 className="bg-black border-red-500/20 hover:border-red-500/40 transition overflow-hidden"
               >
                 <div className="aspect-square bg-red-900/20 overflow-hidden">
-                  <Image
+                  <img
+                    src={`${product.image}`}
+                    alt={product.name}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform"
+                  />
+
+                  {/* <img
                     width={200}
                     height={200}
                     src={
+                      // "/premium-package.jpg"
                       product.image
                         ? `${process.env.NEXT_PUBLIC_API_URL_IMAGE}${product.image}`
                         : "/placeholder.svg?height=300&width=300&query=product"
                     }
                     alt={product.name}
                     className="w-full h-full object-cover hover:scale-105 transition-transform"
-                  />
+                  /> */}
                 </div>
 
                 <CardContent className="p-4 space-y-4">
@@ -129,7 +153,7 @@ export default function MerchantProductsPage() {
                     </Button>
 
                     <Link
-                      href={`/merchant/create-product?id=${product._id}`}
+                      href={`/merchant/product/${product._id}/edit`}
                       className="flex-1"
                     >
                       <Button
@@ -142,6 +166,7 @@ export default function MerchantProductsPage() {
                     </Link>
 
                     <Button
+                      onClick={() => DeleteProduct(product?._id)}
                       size="sm"
                       className="gap-2 bg-red-900/20 text-red-400 hover:bg-red-900/40 border border-red-500/30"
                     >
