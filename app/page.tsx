@@ -18,13 +18,13 @@ export default function HomePage() {
               Products
             </Link>
             <Link
-              href="/login"
+              href="/auth/login"
               className="text-white hover:text-red-500 transition"
             >
               Login
             </Link>
           </div>
-          <Link href="/register">
+          <Link href="/auth/register">
             <Button className="bg-red-600 hover:bg-red-700 text-white">
               Get Started
             </Button>
@@ -61,7 +61,7 @@ export default function HomePage() {
                 Explore Products <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
-            <Link href="/register">
+            <Link href="/auth/register">
               <Button
                 size="lg"
                 variant="outline"
@@ -114,7 +114,7 @@ export default function HomePage() {
           <p className="text-red-100 text-lg">
             Join thousands of users earning rewards with eksplode! DAC
           </p>
-          <Link href="/register">
+          <Link href="/auth/register">
             <Button
               size="lg"
               className="bg-black hover:bg-black/80 text-red-500 font-bold"

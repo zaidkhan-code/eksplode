@@ -1,85 +1,87 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import Link from "next/link"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Mail, ArrowLeft, CheckCircle } from "lucide-react"
-import Image from "next/image"
+import type React from "react";
+import { useState } from "react";
+import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Mail, ArrowLeft, CheckCircle } from "lucide-react";
+import Image from "next/image";
 
 export default function ForgotPasswordPage() {
-  const [step, setStep] = useState<"email" | "verification" | "reset" | "success">("email")
-  const [email, setEmail] = useState("")
-  const [code, setCode] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
+  const [step, setStep] = useState<
+    "email" | "verification" | "reset" | "success"
+  >("email");
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    setLoading(true)
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
     try {
       // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      setStep("verification")
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setStep("verification");
     } catch (err) {
-      setError("Failed to send reset email. Please try again.")
+      setError("Failed to send reset email. Please try again.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleVerificationSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    setLoading(true)
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
     try {
       // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       if (code.length === 6) {
-        setStep("reset")
+        setStep("reset");
       } else {
-        setError("Please enter a valid 6-digit code")
+        setError("Please enter a valid 6-digit code");
       }
     } catch (err) {
-      setError("Verification failed. Please try again.")
+      setError("Verification failed. Please try again.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleResetSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
+    e.preventDefault();
+    setError("");
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match")
-      return
+      setError("Passwords do not match");
+      return;
     }
 
     if (password.length < 8) {
-      setError("Password must be at least 8 characters long")
-      return
+      setError("Password must be at least 8 characters long");
+      return;
     }
 
-    setLoading(true)
+    setLoading(true);
 
     try {
       // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      setStep("success")
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setStep("success");
     } catch (err) {
-      setError("Failed to reset password. Please try again.")
+      setError("Failed to reset password. Please try again.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center px-4 py-8">
@@ -110,11 +112,14 @@ export default function ForgotPasswordPage() {
             {step === "email" && (
               <form onSubmit={handleEmailSubmit} className="space-y-4">
                 <p className="text-gray-400 text-sm mb-6">
-                  Enter your email address and we'll send you a code to reset your password.
+                  Enter your email address and we'll send you a code to reset
+                  your password.
                 </p>
 
                 <div>
-                  <label className="text-sm font-medium text-white">Email Address</label>
+                  <label className="text-sm font-medium text-white">
+                    Email Address
+                  </label>
                   <div className="relative mt-2">
                     <Mail className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
                     <Input
@@ -139,7 +144,7 @@ export default function ForgotPasswordPage() {
                 </Button>
 
                 <Link
-                  href="/login"
+                  href="/auth/login"
                   className="flex items-center justify-center gap-2 text-red-400 hover:text-red-300 text-sm mt-4"
                 >
                   <ArrowLeft className="w-4 h-4" />
@@ -152,16 +157,21 @@ export default function ForgotPasswordPage() {
             {step === "verification" && (
               <form onSubmit={handleVerificationSubmit} className="space-y-4">
                 <p className="text-gray-400 text-sm mb-6">
-                  We've sent a 6-digit code to <span className="text-white font-medium">{email}</span>
+                  We've sent a 6-digit code to{" "}
+                  <span className="text-white font-medium">{email}</span>
                 </p>
 
                 <div>
-                  <label className="text-sm font-medium text-white">Verification Code</label>
+                  <label className="text-sm font-medium text-white">
+                    Verification Code
+                  </label>
                   <Input
                     type="text"
                     placeholder="000000"
                     value={code}
-                    onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                    onChange={(e) =>
+                      setCode(e.target.value.replace(/\D/g, "").slice(0, 6))
+                    }
                     maxLength={6}
                     className="mt-2 bg-black border-red-500/20 text-white text-center text-2xl tracking-widest"
                   />
@@ -192,11 +202,14 @@ export default function ForgotPasswordPage() {
             {step === "reset" && (
               <form onSubmit={handleResetSubmit} className="space-y-4">
                 <p className="text-gray-400 text-sm mb-6">
-                  Create a new password for your account. Make sure it's strong and unique.
+                  Create a new password for your account. Make sure it's strong
+                  and unique.
                 </p>
 
                 <div>
-                  <label className="text-sm font-medium text-white">New Password</label>
+                  <label className="text-sm font-medium text-white">
+                    New Password
+                  </label>
                   <Input
                     type="password"
                     placeholder="••••••••"
@@ -205,11 +218,15 @@ export default function ForgotPasswordPage() {
                     className="mt-2 bg-black border-red-500/20 text-white"
                     required
                   />
-                  <p className="text-xs text-gray-400 mt-1">At least 8 characters</p>
+                  <p className="text-xs text-gray-400 mt-1">
+                    At least 8 characters
+                  </p>
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-white">Confirm Password</label>
+                  <label className="text-sm font-medium text-white">
+                    Confirm Password
+                  </label>
                   <Input
                     type="password"
                     placeholder="••••••••"
@@ -251,13 +268,16 @@ export default function ForgotPasswordPage() {
                 </div>
 
                 <div>
-                  <h3 className="text-white font-bold text-lg mb-2">Password Reset Successful!</h3>
+                  <h3 className="text-white font-bold text-lg mb-2">
+                    Password Reset Successful!
+                  </h3>
                   <p className="text-gray-400 text-sm">
-                    Your password has been successfully reset. You can now log in with your new password.
+                    Your password has been successfully reset. You can now log
+                    in with your new password.
                   </p>
                 </div>
 
-                <Link href="/login">
+                <Link href="/auth/login">
                   <Button className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2">
                     Back to Login
                   </Button>
@@ -271,12 +291,15 @@ export default function ForgotPasswordPage() {
         <div className="mt-6 text-center text-sm text-gray-400">
           <p>
             Don't have an account?{" "}
-            <Link href="/register" className="text-red-400 hover:text-red-300 font-medium">
+            <Link
+              href="/auth/register"
+              className="text-red-400 hover:text-red-300 font-medium"
+            >
               Sign up
             </Link>
           </p>
         </div>
       </div>
     </div>
-  )
+  );
 }
