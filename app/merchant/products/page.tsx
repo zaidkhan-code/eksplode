@@ -65,7 +65,7 @@ export default function MerchantProductsPage() {
         title="My Products"
         description="Manage your product catalog"
         action={
-          <Link href="/merchant/create-product">
+          <Link href="/merchant/product/create">
             <Button className="gap-2 bg-red-600 hover:bg-red-700">
               <Plus className="w-4 h-4" />
               New Product

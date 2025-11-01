@@ -90,7 +90,7 @@ export default function ForgotPasswordPage() {
         <div className="flex justify-center mb-8">
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Explosive%20Letter%20E-EBynhAzFp4XbQxjPLabw8QKPcJtMRd.png"
-            alt="Eksplode Logo"
+            alt="eksplode Logo"
             width={80}
             height={80}
             className="w-20 h-20"

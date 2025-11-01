@@ -107,7 +107,7 @@ export default function LoginPage() {
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="px-2 bg-black text-gray-400">
-                New to Eksplode?
+                New to eksplode!
               </span>
             </div>
           </div>
