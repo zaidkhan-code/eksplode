@@ -13,7 +13,7 @@ export default function UserLayout({
 }) {
   return (
     <ProtectedLayout allowedRole="user">
-      <LayoutWrapper>{children}</LayoutWrapper>;
+      <LayoutWrapper>{children}</LayoutWrapper>
     </ProtectedLayout>
   );
 }

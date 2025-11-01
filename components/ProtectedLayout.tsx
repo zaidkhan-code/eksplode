@@ -3,6 +3,7 @@
 import { useAuth } from "@/components/Context/AuthContext";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
+import Loader from "./Loader";
 
 export default function ProtectedLayout({
   children,
@@ -31,7 +32,7 @@ export default function ProtectedLayout({
   if (!user || user?.role !== allowedRole) {
     return (
       <div className="flex items-center justify-center h-screen">
-        Checking access...
+        <Loader loading={true} />
       </div>
     );
   }

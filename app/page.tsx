@@ -5,7 +5,7 @@ import { ArrowRight, Zap, Users, TrendingUp } from "lucide-react";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-black to-red-950">
+    <div className="min-h-screen  bg-gradient-to-br from-black via-black to-red-950">
       {/* Navigation */}
       <nav className="border-b border-red-900/30 bg-black/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">

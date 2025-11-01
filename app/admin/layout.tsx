@@ -13,7 +13,7 @@ export default function AdminLayout({
 }) {
   return (
     <ProtectedLayout allowedRole="admin">
-      <LayoutWrapper>{children}</LayoutWrapper>;
+      <LayoutWrapper>{children}</LayoutWrapper>
     </ProtectedLayout>
   );
 }

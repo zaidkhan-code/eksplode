@@ -16,12 +16,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "./Context/AuthContext";
-
-interface SidebarProps {
-  role: "user" | "merchant" | "admin";
-}
-
-export function Sidebar({}: SidebarProps) {
+export function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const { user, Logout } = useAuth();

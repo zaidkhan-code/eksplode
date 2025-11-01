@@ -43,7 +43,7 @@ export default function UserProductsPage() {
       p.merchant?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader loading={loading} />;
 
   return (
     <div className="min-h-screen bg-black">
