@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Logo } from "./logo";
+import { Logo } from "../ui/logo";
 import {
   LayoutDashboard,
   ShoppingBag,
@@ -15,7 +15,7 @@ import {
   Settings,
 } from "lucide-react";
 import { useState } from "react";
-import { useAuth } from "./Context/AuthContext";
+import { useAuth } from "../Context/AuthContext";
 export function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();

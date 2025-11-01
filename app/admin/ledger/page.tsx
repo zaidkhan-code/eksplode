@@ -1,24 +1,30 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { PageHeader } from "@/components/page-header"
-import { DataTable } from "@/components/data-table"
-import { formatCurrency, formatDate } from "@/lib/utils"
-import { Filter, Download, TrendingUp, TrendingDown, Search } from "lucide-react"
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { PageHeader } from "@/components/ui/page-header";
+import { DataTable } from "@/components/ui/data-table";
+import { formatCurrency, formatDate } from "@/lib/utils";
+import {
+  Filter,
+  Download,
+  TrendingUp,
+  TrendingDown,
+  Search,
+} from "lucide-react";
 
 interface LedgerEntry {
-  id: string
-  userId: string
-  userName: string
-  type: "credit" | "debit"
-  amount: number
-  description: string
-  date: string
-  balance: number
+  id: string;
+  userId: string;
+  userName: string;
+  type: "credit" | "debit";
+  amount: number;
+  description: string;
+  date: string;
+  balance: number;
 }
 
 const mockLedger: LedgerEntry[] = [
@@ -62,20 +68,20 @@ const mockLedger: LedgerEntry[] = [
     date: "2024-01-12",
     balance: 425000,
   },
-]
+];
 
 export default function LedgerPage() {
-  const [ledger] = useState<LedgerEntry[]>(mockLedger)
-  const [filterType, setFilterType] = useState<string>("all")
-  const [searchTerm, setSearchTerm] = useState("")
+  const [ledger] = useState<LedgerEntry[]>(mockLedger);
+  const [filterType, setFilterType] = useState<string>("all");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const filtered = ledger.filter((entry) => {
-    const matchesType = filterType === "all" || entry.type === filterType
+    const matchesType = filterType === "all" || entry.type === filterType;
     const matchesSearch =
       entry.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      entry.userId.toLowerCase().includes(searchTerm.toLowerCase())
-    return matchesType && matchesSearch
-  })
+      entry.userId.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesType && matchesSearch;
+  });
 
   return (
     <div className="min-h-screen bg-black">
@@ -143,24 +149,40 @@ export default function LedgerPage() {
           <div className="grid md:grid-cols-4 gap-4">
             <Card className="bg-black border-red-500/20 p-4">
               <p className="text-gray-400 text-sm">Total Entries</p>
-              <p className="text-2xl font-bold text-white mt-1">{filtered.length}</p>
+              <p className="text-2xl font-bold text-white mt-1">
+                {filtered.length}
+              </p>
             </Card>
             <Card className="bg-black border-red-500/20 p-4">
               <p className="text-gray-400 text-sm">Total Credits</p>
               <p className="text-2xl font-bold text-green-400 mt-1">
-                {formatCurrency(filtered.filter((e) => e.type === "credit").reduce((sum, e) => sum + e.amount, 0))}
+                {formatCurrency(
+                  filtered
+                    .filter((e) => e.type === "credit")
+                    .reduce((sum, e) => sum + e.amount, 0)
+                )}
               </p>
             </Card>
             <Card className="bg-black border-red-500/20 p-4">
               <p className="text-gray-400 text-sm">Total Debits</p>
               <p className="text-2xl font-bold text-red-400 mt-1">
-                {formatCurrency(filtered.filter((e) => e.type === "debit").reduce((sum, e) => sum + e.amount, 0))}
+                {formatCurrency(
+                  filtered
+                    .filter((e) => e.type === "debit")
+                    .reduce((sum, e) => sum + e.amount, 0)
+                )}
               </p>
             </Card>
             <Card className="bg-black border-red-500/20 p-4">
               <p className="text-gray-400 text-sm">Net Balance</p>
               <p className="text-2xl font-bold text-white mt-1">
-                {formatCurrency(filtered.reduce((sum, e) => sum + (e.type === "credit" ? e.amount : -e.amount), 0))}
+                {formatCurrency(
+                  filtered.reduce(
+                    (sum, e) =>
+                      sum + (e.type === "credit" ? e.amount : -e.amount),
+                    0
+                  )
+                )}
               </p>
             </Card>
           </div>
@@ -183,7 +205,13 @@ export default function LedgerPage() {
                     key: "type",
                     label: "Type",
                     render: (value) => (
-                      <Badge className={value === "credit" ? "bg-green-600 text-white" : "bg-red-600 text-white"}>
+                      <Badge
+                        className={
+                          value === "credit"
+                            ? "bg-green-600 text-white"
+                            : "bg-red-600 text-white"
+                        }
+                      >
                         {value === "credit" ? (
                           <TrendingUp className="w-3 h-3 mr-1" />
                         ) : (
@@ -197,7 +225,13 @@ export default function LedgerPage() {
                     key: "amount",
                     label: "Amount",
                     render: (value, row) => (
-                      <span className={row.type === "credit" ? "text-green-400" : "text-red-400"}>
+                      <span
+                        className={
+                          row.type === "credit"
+                            ? "text-green-400"
+                            : "text-red-400"
+                        }
+                      >
                         {row.type === "credit" ? "+" : "-"}
                         {formatCurrency(value)}
                       </span>
@@ -211,7 +245,11 @@ export default function LedgerPage() {
                   {
                     key: "balance",
                     label: "Balance",
-                    render: (value) => <span className="text-red-400 font-semibold">{formatCurrency(value)}</span>,
+                    render: (value) => (
+                      <span className="text-red-400 font-semibold">
+                        {formatCurrency(value)}
+                      </span>
+                    ),
                   },
                   {
                     key: "date",
@@ -225,5 +263,5 @@ export default function LedgerPage() {
         </div>
       </main>
     </div>
-  )
+  );
 }

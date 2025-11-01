@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { PageHeader } from "@/components/page-header"
-import { DataTable } from "@/components/data-table"
-import { formatCurrency, formatDate } from "@/lib/utils"
-import { Plus, CheckCircle, Clock, X, Search } from "lucide-react"
+import type React from "react";
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { PageHeader } from "@/components/ui/page-header";
+import { DataTable } from "@/components/ui/data-table";
+import { formatCurrency, formatDate } from "@/lib/utils";
+import { Plus, CheckCircle, Clock, X, Search } from "lucide-react";
 
 interface Payout {
-  id: string
-  userId: string
-  userName: string
-  amount: number
-  method: "bank_transfer" | "stripe" | "paypal"
-  status: "completed" | "pending" | "failed"
-  date: string
-  reference: string
+  id: string;
+  userId: string;
+  userName: string;
+  amount: number;
+  method: "bank_transfer" | "stripe" | "paypal";
+  status: "completed" | "pending" | "failed";
+  date: string;
+  reference: string;
 }
 
 const mockPayouts: Payout[] = [
@@ -63,38 +63,38 @@ const mockPayouts: Payout[] = [
     date: "2024-01-12",
     reference: "TXN-2024-004",
   },
-]
+];
 
 export default function PayoutsPage() {
-  const [payouts, setPayouts] = useState<Payout[]>(mockPayouts)
-  const [showModal, setShowModal] = useState(false)
-  const [searchTerm, setSearchTerm] = useState("")
+  const [payouts, setPayouts] = useState<Payout[]>(mockPayouts);
+  const [showModal, setShowModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const [formData, setFormData] = useState({
     userId: "",
     userName: "",
     amount: "",
     method: "bank_transfer" as "bank_transfer" | "stripe" | "paypal",
-  })
+  });
 
   const filtered = payouts.filter(
     (payout) =>
       payout.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      payout.userId.toLowerCase().includes(searchTerm.toLowerCase()),
-  )
+      payout.userId.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "completed":
-        return <CheckCircle className="w-4 h-4 text-green-400" />
+        return <CheckCircle className="w-4 h-4 text-green-400" />;
       case "pending":
-        return <Clock className="w-4 h-4 text-yellow-400" />
+        return <Clock className="w-4 h-4 text-yellow-400" />;
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     const newPayout: Payout = {
       id: String(payouts.length + 1),
       userId: formData.userId,
@@ -104,11 +104,16 @@ export default function PayoutsPage() {
       status: "pending",
       date: new Date().toISOString().split("T")[0],
       reference: `TXN-${Date.now()}`,
-    }
-    setPayouts([newPayout, ...payouts])
-    setFormData({ userId: "", userName: "", amount: "", method: "bank_transfer" })
-    setShowModal(false)
-  }
+    };
+    setPayouts([newPayout, ...payouts]);
+    setFormData({
+      userId: "",
+      userName: "",
+      amount: "",
+      method: "bank_transfer",
+    });
+    setShowModal(false);
+  };
 
   return (
     <div className="min-h-screen bg-black">
@@ -116,7 +121,10 @@ export default function PayoutsPage() {
         title="Payouts"
         description="Manage user payouts and transfers"
         action={
-          <Button onClick={() => setShowModal(true)} className="gap-2 bg-red-600 hover:bg-red-700">
+          <Button
+            onClick={() => setShowModal(true)}
+            className="gap-2 bg-red-600 hover:bg-red-700"
+          >
             <Plus className="w-4 h-4" />
             New Payout
           </Button>
@@ -141,7 +149,9 @@ export default function PayoutsPage() {
           <div className="grid md:grid-cols-4 gap-4">
             <Card className="bg-black border-red-500/20 p-4">
               <p className="text-gray-400 text-sm">Total Payouts</p>
-              <p className="text-2xl font-bold text-white mt-1">{payouts.length}</p>
+              <p className="text-2xl font-bold text-white mt-1">
+                {payouts.length}
+              </p>
             </Card>
             <Card className="bg-black border-red-500/20 p-4">
               <p className="text-gray-400 text-sm">Completed</p>
@@ -180,7 +190,11 @@ export default function PayoutsPage() {
                   {
                     key: "amount",
                     label: "Amount",
-                    render: (value) => <span className="text-red-400 font-semibold">{formatCurrency(value)}</span>,
+                    render: (value) => (
+                      <span className="text-red-400 font-semibold">
+                        {formatCurrency(value)}
+                      </span>
+                    ),
                     sortable: true,
                   },
                   {
@@ -203,8 +217,8 @@ export default function PayoutsPage() {
                             value === "completed"
                               ? "bg-green-600 text-white"
                               : value === "pending"
-                                ? "bg-yellow-600 text-white"
-                                : "bg-red-600 text-white"
+                              ? "bg-yellow-600 text-white"
+                              : "bg-red-600 text-white"
                           }
                         >
                           {value}
@@ -234,52 +248,74 @@ export default function PayoutsPage() {
           <Card className="bg-black border-red-500/30 w-full max-w-md">
             <CardHeader className="border-b border-red-500/20 flex flex-row items-center justify-between">
               <CardTitle className="text-white">Create New Payout</CardTitle>
-              <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-white transition">
+              <button
+                onClick={() => setShowModal(false)}
+                className="text-gray-400 hover:text-white transition"
+              >
                 <X className="w-5 h-5" />
               </button>
             </CardHeader>
             <CardContent className="pt-6">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium text-white">User ID</label>
+                  <label className="text-sm font-medium text-white">
+                    User ID
+                  </label>
                   <Input
                     placeholder="user_001"
                     value={formData.userId}
-                    onChange={(e) => setFormData({ ...formData, userId: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, userId: e.target.value })
+                    }
                     className="mt-2 bg-black border-red-500/20 text-white"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-white">User Name</label>
+                  <label className="text-sm font-medium text-white">
+                    User Name
+                  </label>
                   <Input
                     placeholder="John Doe"
                     value={formData.userName}
-                    onChange={(e) => setFormData({ ...formData, userName: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, userName: e.target.value })
+                    }
                     className="mt-2 bg-black border-red-500/20 text-white"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-white">Amount ($)</label>
+                  <label className="text-sm font-medium text-white">
+                    Amount ($)
+                  </label>
                   <Input
                     type="number"
                     placeholder="0.00"
                     step="0.01"
                     value={formData.amount}
-                    onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, amount: e.target.value })
+                    }
                     className="mt-2 bg-black border-red-500/20 text-white"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-white">Payment Method</label>
+                  <label className="text-sm font-medium text-white">
+                    Payment Method
+                  </label>
                   <select
                     value={formData.method}
-                    onChange={(e) => setFormData({ ...formData, method: e.target.value as any })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        method: e.target.value as any,
+                      })
+                    }
                     className="mt-2 w-full p-2 bg-black border border-red-500/20 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
                   >
                     <option value="bank_transfer">Bank Transfer</option>
@@ -296,7 +332,10 @@ export default function PayoutsPage() {
                   >
                     Cancel
                   </Button>
-                  <Button type="submit" className="flex-1 bg-red-600 hover:bg-red-700">
+                  <Button
+                    type="submit"
+                    className="flex-1 bg-red-600 hover:bg-red-700"
+                  >
                     Create Payout
                   </Button>
                 </div>
@@ -306,5 +345,5 @@ export default function PayoutsPage() {
         </div>
       )}
     </div>
-  )
+  );
 }

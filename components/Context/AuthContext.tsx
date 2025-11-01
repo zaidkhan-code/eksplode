@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import { useRouter } from "next/navigation";
 // import { toast } from "react-toastify";
 import useApi from "../../lib/useApi"; // make sure your custom hook path is correct
@@ -30,6 +36,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       ? JSON.parse(localStorage.getItem("user") || "null")
       : null
   );
+  const getStoredAuthData = () => {
+    if (typeof window === "undefined")
+      return { accessToken: null, refreshToken: null, user: null };
+
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const refreshToken = localStorage.getItem("refreshToken");
+      const userData = localStorage.getItem("user");
+
+      return {
+        accessToken: accessToken || null,
+        refreshToken: refreshToken || null,
+        user: userData ? JSON.parse(userData) : null,
+      };
+    } catch (error) {
+      console.error("Error reading auth data from localStorage:", error);
+      return { accessToken: null, refreshToken: null, user: null };
+    }
+  };
 
   // ✅ LOGIN
   const login = (email: string, password: string, rememberMe: boolean) => {
@@ -99,7 +124,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
   }
   return (
-    <AuthContext.Provider value={{ isLoading, user, login, register, Logout }}>
+    <AuthContext.Provider
+      value={{ isLoading, user, login, register, Logout, getStoredAuthData }}
+    >
       {children}
     </AuthContext.Provider>
   );

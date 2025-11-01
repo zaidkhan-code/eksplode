@@ -3,8 +3,8 @@
 import type React from "react";
 
 import { Sidebar } from "@/components/sidebar";
-import { LayoutWrapper } from "@/components/LayoutWrapper";
-import ProtectedLayout from "@/components/ProtectedLayout";
+import { LayoutWrapper } from "@/components/LayoutSystem/LayoutWrapper";
+import ProtectedLayout from "@/components/LayoutSystem/ProtectedLayout";
 
 export default function MerchantLayout({
   children,
@@ -13,7 +13,7 @@ export default function MerchantLayout({
 }) {
   return (
     <ProtectedLayout allowedRole="merchant">
-      <LayoutWrapper>{children}</LayoutWrapper>;
+      <LayoutWrapper>{children}</LayoutWrapper>
     </ProtectedLayout>
   );
 }

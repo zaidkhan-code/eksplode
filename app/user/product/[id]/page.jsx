@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Logo } from "@/components/logo";
+import { Logo } from "@/components/ui/logo";
 // import { Logo } from "@/components/";
 import { useAuth } from "../../../../components/Context/AuthContext";
 import { Share2, Download, Copy, Check, Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import useApi from "@/lib/useApi";
-import Loader from "@/components/Loader";
+import Loader from "@/components/ui/Loader";
 import { useParams, useSearchParams } from "next/navigation";
 
 export default function Page() {

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Logo } from "@/components/logo";
+import { Logo } from "@/components/ui/logo";
 import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/components/Context/AuthContext";
 

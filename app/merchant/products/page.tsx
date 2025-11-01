@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from "@/components/ui/page-header";
 import { Plus, Edit2, Trash2, Eye } from "lucide-react";
 import Link from "next/link";
 import useApi from "@/lib/useApi";
 import { toast } from "sonner";
 import Image from "next/image";
-import Loader from "@/components/Loader";
+import Loader from "@/components/ui/Loader";
 
 interface Product {
   _id: string;

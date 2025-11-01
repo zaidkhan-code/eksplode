@@ -2,9 +2,9 @@
 
 import type React from "react";
 
-import { Sidebar } from "@/components/sidebar";
-import { LayoutWrapper } from "@/components/LayoutWrapper";
-import ProtectedLayout from "@/components/ProtectedLayout";
+import { Sidebar } from "@/components/ui/sidebar";
+import { LayoutWrapper } from "@/components/LayoutSystem/LayoutWrapper";
+import ProtectedLayout from "@/components/LayoutSystem/ProtectedLayout";
 
 export default function UserLayout({
   children,

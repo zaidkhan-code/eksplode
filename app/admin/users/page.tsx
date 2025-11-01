@@ -1,24 +1,24 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { PageHeader } from "@/components/page-header"
-import { DataTable } from "@/components/data-table"
-import { formatCurrency, formatDate } from "@/lib/utils"
-import { Search, Mail, Phone } from "lucide-react"
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { PageHeader } from "@/components/ui/page-header";
+import { DataTable } from "@/components/ui/data-table";
+import { formatCurrency, formatDate } from "@/lib/utils";
+import { Search, Mail, Phone } from "lucide-react";
 
 interface User {
-  id: string
-  name: string
-  email: string
-  phone: string
-  status: "active" | "inactive" | "suspended"
-  balance: number
-  joinDate: string
-  totalTransactions: number
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  status: "active" | "inactive" | "suspended";
+  balance: number;
+  joinDate: string;
+  totalTransactions: number;
 }
 
 const mockUsers: User[] = [
@@ -62,18 +62,18 @@ const mockUsers: User[] = [
     joinDate: "2023-05-05",
     totalTransactions: 78,
   },
-]
+];
 
 export default function UsersPage() {
-  const [users, setUsers] = useState<User[]>(mockUsers)
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedUser, setSelectedUser] = useState<User | null>(null)
+  const [users, setUsers] = useState<User[]>(mockUsers);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
   const filtered = users.filter(
     (user) =>
       user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase()),
-  )
+      user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen bg-black">
@@ -98,7 +98,9 @@ export default function UsersPage() {
           <div className="grid md:grid-cols-4 gap-4">
             <Card className="bg-black border-red-500/20 p-4">
               <p className="text-gray-400 text-sm">Total Users</p>
-              <p className="text-2xl font-bold text-white mt-1">{users.length}</p>
+              <p className="text-2xl font-bold text-white mt-1">
+                {users.length}
+              </p>
             </Card>
             <Card className="bg-black border-red-500/20 p-4">
               <p className="text-gray-400 text-sm">Active Users</p>
@@ -150,8 +152,8 @@ export default function UsersPage() {
                           value === "active"
                             ? "bg-green-600 text-white"
                             : value === "inactive"
-                              ? "bg-yellow-600 text-white"
-                              : "bg-red-600 text-white"
+                            ? "bg-yellow-600 text-white"
+                            : "bg-red-600 text-white"
                         }
                       >
                         {value}
@@ -161,7 +163,11 @@ export default function UsersPage() {
                   {
                     key: "balance",
                     label: "Balance",
-                    render: (value) => <span className="text-red-400 font-semibold">{formatCurrency(value)}</span>,
+                    render: (value) => (
+                      <span className="text-red-400 font-semibold">
+                        {formatCurrency(value)}
+                      </span>
+                    ),
                     sortable: true,
                   },
                   {
@@ -211,8 +217,8 @@ export default function UsersPage() {
                     selectedUser.status === "active"
                       ? "bg-green-600 text-white mt-1"
                       : selectedUser.status === "inactive"
-                        ? "bg-yellow-600 text-white mt-1"
-                        : "bg-red-600 text-white mt-1"
+                      ? "bg-yellow-600 text-white mt-1"
+                      : "bg-red-600 text-white mt-1"
                   }
                 >
                   {selectedUser.status}
@@ -220,19 +226,28 @@ export default function UsersPage() {
               </div>
               <div>
                 <p className="text-gray-400 text-sm">Balance</p>
-                <p className="text-red-400 font-bold text-lg mt-1">{formatCurrency(selectedUser.balance)}</p>
+                <p className="text-red-400 font-bold text-lg mt-1">
+                  {formatCurrency(selectedUser.balance)}
+                </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-gray-400 text-sm">Transactions</p>
-                  <p className="text-white font-bold text-lg mt-1">{selectedUser.totalTransactions}</p>
+                  <p className="text-white font-bold text-lg mt-1">
+                    {selectedUser.totalTransactions}
+                  </p>
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">Joined</p>
-                  <p className="text-white font-bold text-lg mt-1">{formatDate(selectedUser.joinDate)}</p>
+                  <p className="text-white font-bold text-lg mt-1">
+                    {formatDate(selectedUser.joinDate)}
+                  </p>
                 </div>
               </div>
-              <Button onClick={() => setSelectedUser(null)} className="w-full bg-red-600 hover:bg-red-700">
+              <Button
+                onClick={() => setSelectedUser(null)}
+                className="w-full bg-red-600 hover:bg-red-700"
+              >
                 Close
               </Button>
             </CardContent>
@@ -240,5 +255,5 @@ export default function UsersPage() {
         </div>
       )}
     </div>
-  )
+  );
 }

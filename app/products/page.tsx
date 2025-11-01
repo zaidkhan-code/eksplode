@@ -1,12 +1,14 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card } from "@/components/ui/card"
-import { Logo } from "@/components/logo"
-import { Search, Share2, ShoppingCart } from "lucide-react"
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
+import { Logo } from "@/components/ui/logo";
+import { Search, Share2, ShoppingCart } from "lucide-react";
+import useApi from "@/lib/useApi";
+import Loader from "@/components/ui/Loader";
 
 // Mock data
 const mockProducts = [
@@ -42,16 +44,41 @@ const mockProducts = [
     image: "/starter-pack.jpg",
     description: "Perfect for beginners",
   },
-]
+];
 
 export default function ProductsPage() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [sortBy, setSortBy] = useState("popular")
+  const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const filteredProducts = mockProducts.filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()))
+  useEffect(() => {
+    const fetchProducts = async () => {
+      useApi(
+        "products",
+        { method: "GET" },
+        (res, success) => {
+          if (success) {
+            setProducts(res?.products || []);
+          } else {
+            console.error("Error loading products:", res);
+          }
+          setLoading(false);
+        },
+        true // notProtected = true (if your API doesn't need auth)
+      );
+    };
+
+    fetchProducts();
+  }, []);
+
+  const filtered = products.filter(
+    (p) =>
+      p.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.merchant?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-black to-red-950">
+    <div className="min-h-screen flex-col flex bg-gradient-to-br from-black via-black to-red-950">
       {/* Navigation */}
       <nav className="border-b border-red-900/30 bg-black/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
@@ -65,18 +92,24 @@ export default function ProductsPage() {
               </Button>
             </Link>
             <Link href="/register">
-              <Button className="bg-red-600 hover:bg-red-700 text-white">Sign Up</Button>
+              <Button className="bg-red-600 hover:bg-red-700 text-white">
+                Sign Up
+              </Button>
             </Link>
           </div>
         </div>
       </nav>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">Explore Products</h1>
-          <p className="text-gray-400">Discover amazing products and earn rewards</p>
+          <h1 className="text-4xl font-bold text-white mb-4">
+            Explore Products
+          </h1>
+          <p className="text-gray-400">
+            Discover amazing products and earn rewards
+          </p>
         </div>
 
         {/* Search and Filter */}
@@ -91,7 +124,7 @@ export default function ProductsPage() {
               className="pl-10 bg-black/50 border-red-500/30 text-white placeholder:text-gray-600 focus:border-red-500"
             />
           </div>
-          <select
+          {/* <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
             className="px-4 py-2 bg-black/50 border border-red-500/30 text-white rounded-lg focus:border-red-500 outline-none"
@@ -100,61 +133,69 @@ export default function ProductsPage() {
             <option value="price-low">Price: Low to High</option>
             <option value="price-high">Price: High to Low</option>
             <option value="reward">Highest Reward</option>
-          </select>
+          </select> */}
         </div>
-
-        {/* Products Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
-            <Card
-              key={product.id}
-              className="bg-black border-red-500/20 hover:border-red-500/50 transition overflow-hidden group"
-            >
-              <div className="relative overflow-hidden h-48 bg-black/50">
-                <img
-                  src={product.image || "/placeholder.svg"}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-                />
-              </div>
-
-              <div className="p-4 space-y-4">
-                <div>
-                  <h3 className="font-bold text-white text-lg">{product.name}</h3>
-                  <p className="text-sm text-gray-400">{product.description}</p>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {filtered.map((product, index) => (
+              <Card
+                key={index}
+                className="bg-black border-red-500/20 hover:border-red-500/50 transition overflow-hidden group"
+              >
+                <div className="relative overflow-hidden h-48 bg-black/50">
+                  <img
+                    src={product.image || "/placeholder.svg"}
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                  />
                 </div>
 
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-2xl font-bold text-red-500">${(product.price / 100).toFixed(2)}</span>
-                    <span className="text-sm bg-red-900/30 text-red-400 px-2 py-1 rounded">
-                      +${(product.reward / 100).toFixed(2)} reward
-                    </span>
+                <div className="p-4 space-y-4">
+                  <div>
+                    <h3 className="font-bold text-white text-lg">
+                      {product.name}
+                    </h3>
+                    <p className="text-sm text-gray-400">
+                      {product.description}
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className=" flex justify-between items-center">
+                      <span className="text-2xl font-bold text-red-500">
+                        ${(product?.priceCents / 100).toFixed(2)}
+                      </span>
+                      {/* <span className="text-sm bg-red-900/30 text-red-400 px-2 py-1 rounded">
+                      +${(product?.rewardCents / 100).toFixed(2)} reward
+                    </span> */}
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <Link href={`/product/${product._id}`} className="flex-1">
+                      <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
+                        <ShoppingCart className="w-4 h-4 mr-2" />
+                        Buy Now
+                      </Button>
+                    </Link>
+                    {/* <Button
+                      variant="outline"
+                      className="border-red-500/30 text-red-500 hover:bg-red-500/10 bg-transparent"
+                    >
+                      <Share2 className="w-4 h-4" />
+                    </Button> */}
                   </div>
                 </div>
-
-                <div className="flex gap-2">
-                  <Link href={`/product/${product.id}`} className="flex-1">
-                    <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      Buy Now
-                    </Button>
-                  </Link>
-                  <Button
-                    variant="outline"
-                    className="border-red-500/30 text-red-500 hover:bg-red-500/10 bg-transparent"
-                  >
-                    <Share2 className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
+              </Card>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-red-900/30 bg-black/50 py-12 mt-20">
+      <footer className="border-t mt-auto  border-red-900/30 bg-black/50 py-12 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <Logo size="sm" />
@@ -173,5 +214,5 @@ export default function ProductsPage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
