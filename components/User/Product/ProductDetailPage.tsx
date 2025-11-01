@@ -61,10 +61,11 @@ export default function ProductDetailPage({ loginUser = false }) {
   // ✅ Fetch product details
   useEffect(() => {
     if (!params.id) return;
-    setLoading(false);
+    setLoading(true);
     useApi(`products/${params.id}`, { method: "GET" }, (res, status) => {
       if (status && res?.product) {
         setProduct(res.product);
+        setLoading(false);
       } else {
         toast.error(res?.message || "Failed to fetch product details");
       }
