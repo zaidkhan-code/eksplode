@@ -53,7 +53,6 @@ export default function UserProductsPage() {
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Search Bar */}
         <div className="mb-8">
           <div className="relative">
             <Search className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
@@ -66,7 +65,6 @@ export default function UserProductsPage() {
           </div>
         </div>
 
-        {/* Products Grid */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {filtered.map((product) => {
             const imageUrl = product.image?.startsWith("http")
