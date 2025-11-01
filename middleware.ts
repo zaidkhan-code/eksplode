@@ -5,38 +5,38 @@ export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const role = req.cookies.get("role")?.value;
 
-  // ✅ Define public routes
-  const publicRoutes = ["/", "/products", "/auth/login", "/auth/register"];
-  const isPublic = publicRoutes.some(
-    (route) => pathname === route || pathname.startsWith(route)
-  );
+  // // ✅ Define public routes
+  // const publicRoutes = ["/", "/products", "/auth/login", "/auth/register"];
+  // const isPublic = publicRoutes.some(
+  //   (route) => pathname === route || pathname.startsWith(route)
+  // );
 
-  // ✅ If logged-in user visits a public route → redirect to their dashboard
-  if (isPublic && role) {
-    const dashboardPath = `/${role}/dashboard`;
-    if (!pathname.startsWith(`/${role}`)) {
-      return NextResponse.redirect(new URL(dashboardPath, req.url));
-    }
-  }
+  // // ✅ If logged-in user visits a public route → redirect to their dashboard
+  // if (isPublic && role) {
+  //   const dashboardPath = `/${role}/dashboard`;
+  //   if (!pathname.startsWith(`/${role}`)) {
+  //     return NextResponse.redirect(new URL(dashboardPath, req.url));
+  //   }
+  // }
 
-  // 🔒 Protect role-based areas
-  if (pathname.startsWith("/admin")) {
-    if (role !== "admin") {
-      return NextResponse.redirect(new URL("/auth/login", req.url));
-    }
-  }
+  // // 🔒 Protect role-based areas
+  // if (pathname.startsWith("/admin")) {
+  //   if (role !== "admin") {
+  //     return NextResponse.redirect(new URL("/auth/login", req.url));
+  //   }
+  // }
 
-  if (pathname.startsWith("/merchant")) {
-    if (role !== "merchant") {
-      return NextResponse.redirect(new URL("/auth/login", req.url));
-    }
-  }
+  // if (pathname.startsWith("/merchant")) {
+  //   if (role !== "merchant") {
+  //     return NextResponse.redirect(new URL("/auth/login", req.url));
+  //   }
+  // }
 
-  if (pathname.startsWith("/user")) {
-    if (role !== "user") {
-      return NextResponse.redirect(new URL("/auth/login", req.url));
-    }
-  }
+  // if (pathname.startsWith("/user")) {
+  //   if (role !== "user") {
+  //     return NextResponse.redirect(new URL("/auth/login", req.url));
+  //   }
+  // }
 
   return NextResponse.next();
 }
