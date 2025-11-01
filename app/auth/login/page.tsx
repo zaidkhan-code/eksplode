@@ -10,7 +10,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/components/Context/AuthContext";
 
 export default function LoginPage() {
-  const { login } = useAuth();
+  const { login, isLoading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,9 +18,7 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    await login(email, password);
-    setLoading(false);
+    login(email, password); // Wait for login to finish
   };
 
   return (
@@ -95,10 +93,10 @@ export default function LoginPage() {
 
             <Button
               type="submit"
-              disabled={loading}
+              disabled={isLoading}
               className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2"
             >
-              {loading ? "Signing in..." : "Sign In"}
+              {isLoading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
 
