@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,12 +10,12 @@ import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/components/Context/AuthContext";
 
 export default function LoginPage() {
-  const { login, isLoading } = useAuth();
+  const { login, isLoading, protectAuthPages } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
+  useEffect(() => protectAuthPages(), []);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     login(email, password); // Wait for login to finish

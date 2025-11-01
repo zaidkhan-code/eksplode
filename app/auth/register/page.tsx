@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/components/Context/AuthContext"; // ✅ import context
 
 export default function RegisterPage() {
-  const { register, isLoading } = useAuth(); // ✅ get register from context
+  const { register, isLoading, protectAuthPages } = useAuth(); // ✅ get register from context
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState("user");
   const [formData, setFormData] = useState({
@@ -19,6 +19,7 @@ export default function RegisterPage() {
     password: "",
     confirmPassword: "",
   });
+  useEffect(() => protectAuthPages(), []);
 
   // ✅ Submit handler
   const handleSubmit = (e: React.FormEvent) => {

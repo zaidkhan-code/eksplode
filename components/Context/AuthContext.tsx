@@ -30,6 +30,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState<any>(
     typeof window !== "undefined"
@@ -53,6 +54,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } catch (error) {
       console.error("Error reading auth data from localStorage:", error);
       return { accessToken: null, refreshToken: null, user: null };
+    }
+  };
+
+  const protectAuthPages = () => {
+    if (user) {
+      router.push("/"); // redirect to homepage or dashboard
     }
   };
 
@@ -125,7 +132,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
   return (
     <AuthContext.Provider
-      value={{ isLoading, user, login, register, Logout, getStoredAuthData }}
+      value={{
+        isLoading,
+        user,
+        login,
+        register,
+        Logout,
+        getStoredAuthData,
+        protectAuthPages,
+      }}
     >
       {children}
     </AuthContext.Provider>

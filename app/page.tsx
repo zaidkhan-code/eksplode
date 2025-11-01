@@ -5,8 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/logo";
 import { ArrowRight, Zap, Users, TrendingUp } from "lucide-react";
 import { Header } from "@/components/ui/Navbar";
+import { useRouter } from "next/router";
+import { useAuth } from "@/components/Context/AuthContext";
 
 export default function HomePage() {
+  const { getStoredAuthData } = useAuth();
+  const { accessToken, user } = getStoredAuthData();
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-black via-black to-red-950">
       {/* ✅ Header */}
@@ -41,13 +46,15 @@ export default function HomePage() {
                 Explore Products <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
-            <Link href="/auth/register">
+            <Link
+              href={accessToken ? `${user?.role}/dashboard` : "/auth/register"}
+            >
               <Button
                 size="lg"
                 variant="outline"
                 className="border-red-500 text-red-500 hover:bg-red-500/10 w-full sm:w-auto bg-transparent"
               >
-                Join Now
+                {accessToken ? `Go to your dashboard` : "Join Now"}
               </Button>
             </Link>
           </div>

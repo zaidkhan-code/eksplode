@@ -16,7 +16,10 @@ export const Header = () => {
   return (
     <nav className="border-b border-red-900/30 bg-black/50 backdrop-blur-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        <Logo size="md" />
+        <Link href={"/"}>
+          {" "}
+          <Logo size="md" />
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 items-center">

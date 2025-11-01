@@ -9,6 +9,7 @@ import { Logo } from "@/components/ui/logo";
 import { Search, Share2, ShoppingCart } from "lucide-react";
 import useApi from "@/lib/useApi";
 import Loader from "@/components/ui/Loader";
+import { Header } from "@/components/ui/Navbar";
 
 // Mock data
 const mockProducts = [
@@ -79,26 +80,7 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen flex-col flex bg-gradient-to-br from-black via-black to-red-950">
-      {/* Navigation */}
-      <nav className="border-b border-red-900/30 bg-black/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="/">
-            <Logo size="md" />
-          </Link>
-          <div className="flex gap-4">
-            <Link href="/login">
-              <Button variant="ghost" className="text-white hover:text-red-500">
-                Login
-              </Button>
-            </Link>
-            <Link href="/register">
-              <Button className="bg-red-600 hover:bg-red-700 text-white">
-                Sign Up
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Header />
 
       {/* Main Content */}
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
