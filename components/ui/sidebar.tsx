@@ -16,8 +16,10 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "../Context/AuthContext";
+
 export function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const pathname = usePathname();
   const { user, Logout } = useAuth();
 
@@ -54,8 +56,8 @@ export function Sidebar() {
 
   return (
     <>
-      {/* Mobile Menu Button */}
-      <div className=" flex justify-between p-2 bg-black md:hidden">
+      {/* Mobile Header */}
+      <div className="flex justify-between p-2 bg-black md:hidden">
         <Link
           href="/"
           onClick={() => setIsOpen(false)}
@@ -66,7 +68,7 @@ export function Sidebar() {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className=" z-50 px-2 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+          className="z-50 px-2 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -111,15 +113,48 @@ export function Sidebar() {
             })}
           </nav>
 
-          {/* Logout */}
-          <div className="pt-8 border-t border-red-900/30 flex-shrink-0">
-            <button
-              onClick={Logout}
-              className="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-red-500 transition w-full rounded-lg hover:bg-red-900/10"
-            >
-              <LogOut className="w-5 h-5" />
-              <span className="font-medium">Logout</span>
-            </button>
+          {/* User Profile / Logout */}
+          <div className="pt-8 border-t border-red-900/30 flex-shrink-0 relative">
+            {user ? (
+              <div className="relative">
+                {/* Profile Image Button */}
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center gap-3 px-4 py-3 w-full text-gray-400 hover:text-white hover:bg-red-900/10 rounded-lg transition"
+                >
+                  <img
+                    src={"/download (5).jpeg"}
+                    alt="Profile"
+                    className="w-10 h-10 rounded-full border border-red-600 object-cover"
+                  />
+                  <span className="font-medium">{user.name || "User"}</span>
+                </button>
+
+                {/* Dropdown Menu */}
+                {showUserMenu && (
+                  <div className="absolute bottom-16 left-4 bg-zinc-900 border border-red-800/40 rounded-lg shadow-lg w-52">
+                    <div className="px-4 py-2 border-b border-red-900/40 text-gray-300 font-medium">
+                      {user.name || "User"}
+                    </div>
+                    <button
+                      onClick={Logout}
+                      className="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-red-500 hover:bg-red-900/10 w-full rounded-b-lg transition"
+                    >
+                      <LogOut className="w-5 h-5" />
+                      <span className="font-medium">Logout</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button
+                onClick={Logout}
+                className="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-red-500 transition w-full rounded-lg hover:bg-red-900/10"
+              >
+                <LogOut className="w-5 h-5" />
+                <span className="font-medium">Logout</span>
+              </button>
+            )}
           </div>
         </div>
       </aside>
