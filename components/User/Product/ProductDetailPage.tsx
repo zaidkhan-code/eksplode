@@ -16,6 +16,7 @@ export default function ProductDetailPage({ loginUser = false }) {
   const params = useParams();
   const router = useRouter();
   const { user, Logout, getStoredAuthData } = useAuth();
+  console.log(user, "user data please");
   const { accessToken } = getStoredAuthData();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -35,18 +36,18 @@ export default function ProductDetailPage({ loginUser = false }) {
   useEffect(() => {
     if (sharer && t && s) {
       useApi(
-        "user/verify-share",
+        `products/${params?.id}/track`,
         {
-          method: "POST",
+          method: "post",
           data: {
             productId: params?.id,
-            sharer: sharer,
+            sharerId: sharer,
             t: t,
             s: s,
           },
         },
         (res, status) => {
-          if (status && res?.valid) {
+          if (status) {
             setValid(true);
           } else {
             toast.error("Invalid or expired link");
@@ -79,16 +80,16 @@ export default function ProductDetailPage({ loginUser = false }) {
     setShareLoading(true);
 
     useApi(
-      "user/share-product",
+      `products/${product?._id}/share`,
       {
         method: "POST",
-        data: { sharerId, productId: product._id },
+        data: {},
       },
       (res, status) => {
         setShareLoading(false);
-        if (status && res?.shareUrl) {
-          setShareLink(res.shareUrl);
-          setQrCode(res.qrDataUrl);
+        if (status) {
+          setShareLink(res?.shareUrl);
+          setQrCode(res?.qrCode);
           setShowShareModal(true);
         } else {
           toast.error(res?.message || "Failed to generate share link");
@@ -154,6 +155,26 @@ export default function ProductDetailPage({ loginUser = false }) {
     return null; // Don't show anything while redirecting
   }
 
+  function createstipseshion() {
+    useApi(
+      `orders/checkout`,
+      {
+        method: "POST",
+        data: {
+          productId: params?.id,
+          email: user?.email,
+          sessionId: s,
+        },
+      },
+      (res, status) => {
+        if (status) {
+          router?.push(res?.url);
+        } else {
+          toast.error(res?.message || "Failed to generate share link");
+        }
+      }
+    );
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-black to-red-950">
       {/* Navigation */}
@@ -220,7 +241,10 @@ export default function ProductDetailPage({ loginUser = false }) {
               </div>
 
               <div className="space-y-3">
-                <Button className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-lg font-semibold">
+                <Button
+                  onClick={createstipseshion}
+                  className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-lg font-semibold"
+                >
                   Buy Now
                 </Button>
                 {accessToken && (

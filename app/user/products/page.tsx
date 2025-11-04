@@ -128,7 +128,7 @@ export default function UserProductsPage() {
                       <div className="bg-green-900/20 p-2 rounded border border-green-500/20">
                         <p className="text-xs text-gray-400">Reward</p>
                         <p className="font-semibold text-green-400">
-                          +${product?.reward || 0}
+                          +${product?.rewardCents || 0}
                         </p>
                       </div>
                     </div>
