@@ -139,7 +139,7 @@ export default function MerchantProductsPage() {
                     <div className="bg-red-900/20 p-2 rounded border border-red-500/20">
                       <p className="text-gray-400">Sales</p>
                       <p className="font-semibold text-white">
-                        {formatCurrency(product?.totalSales || 0)}
+                        {product?.totalSales}
                       </p>
                     </div>
                     <div className="col-span-2 bg-red-900/20 p-2 rounded border border-red-500/20">
