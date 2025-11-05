@@ -57,12 +57,7 @@ export function DataTable<T extends { id: string }>({
   });
 
   return (
-    <div
-      className={cn(
-        "w-full overflow-x-auto rounded-lg border border-red-500/20",
-        className
-      )}
-    >
+    <div className={cn("w-full overflow-x-auto rounded-lg  ", className)}>
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b border-red-500/20 bg-black/50">
@@ -71,13 +66,13 @@ export function DataTable<T extends { id: string }>({
                 key={String(column.key)}
                 onClick={() => column.sortable && handleSort(column.key)}
                 className={cn(
-                  "px-4 py-3 text-left font-semibold text-gray-400",
+                  "px-4 py-3 text-left font-semibold text-gray-400 text-nowrap",
                   column.sortable &&
-                    "cursor-pointer hover:text-white transition",
+                    "cursor-pointer hover:text-white transition text-nowrap",
                   column.className
                 )}
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 text-nowrap">
                   {column.label}
                   {column.sortable &&
                     sortKey === column.key &&

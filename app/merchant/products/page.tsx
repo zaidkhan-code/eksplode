@@ -138,19 +138,25 @@ export default function MerchantProductsPage() {
                     <div className="bg-red-900/20 p-2 rounded border border-red-500/20">
                       <p className="text-gray-400">Sales</p>
                       <p className="font-semibold text-white">
-                        {product.sales || 0}
+                        {product?.totalSales || 0}
+                      </p>
+                    </div>
+                    <div className="col-span-2 bg-red-900/20 p-2 rounded border border-red-500/20">
+                      <p className="text-gray-400">Total Revenue</p>
+                      <p className="font-semibold text-white">
+                        ${product?.totalRevenueCents || 0}
                       </p>
                     </div>
                   </div>
 
                   <div className="flex gap-2">
-                    <Button
+                    {/* <Button
                       size="sm"
                       className="flex-1 gap-2 bg-red-900/20 text-red-400 hover:bg-red-900/40 border border-red-500/30"
                     >
                       <Eye className="w-4 h-4" />
                       View
-                    </Button>
+                    </Button> */}
 
                     <Link
                       href={`/merchant/product/${product._id}/edit`}

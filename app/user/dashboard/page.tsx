@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageHeader } from "@/components/ui/page-header";
 import {
@@ -13,65 +14,44 @@ import {
   Zap,
 } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
+import useApi from "@/lib/useApi";
+import Loader from "@/components/ui/Loader";
 
 export default function UserDashboard() {
-  const stats = [
-    {
-      label: "Pending Rewards",
-      value: "$1,250",
-      icon: Award,
-      color: "text-red-500",
-    },
-    {
-      label: "Available Balance",
-      value: "$3,500",
-      icon: Wallet,
-      color: "text-green-400",
-    },
-    {
-      label: "Total Referrals",
-      value: "42",
-      icon: Users,
-      color: "text-blue-400",
-    },
-    {
-      label: "Total Earned",
-      value: "$8,750",
-      icon: TrendingUp,
-      color: "text-yellow-400",
-    },
-  ];
+  const [recentTransactions, setRecentTransactions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [stats, setStats] = useState({
+    pendingRewards: 0,
+    availableBalance: 0,
+    pendingBalance: 0,
+    totalReferrals: 0,
+    totalEarned: 0,
+  });
+  const [user, setUser] = useState({ name: "", email: "" });
 
-  const recentTransactions = [
-    {
-      id: 1,
-      type: "credit",
-      description: "Product Purchase Reward",
-      amount: 250,
-      date: "2 hours ago",
-    },
-    {
-      id: 2,
-      type: "debit",
-      description: "Product Purchase",
-      amount: -150,
-      date: "5 hours ago",
-    },
-    {
-      id: 3,
-      type: "credit",
-      description: "Referral Bonus",
-      amount: 100,
-      date: "1 day ago",
-    },
-    {
-      id: 4,
-      type: "credit",
-      description: "Monthly Reward",
-      amount: 500,
-      date: "2 days ago",
-    },
-  ];
+  useEffect(() => {
+    setLoading(true);
+    const fetchData = () => {
+      useApi("user/dashboard", { method: "GET" }, (res, status) => {
+        if (status) {
+          setUser(res.user);
+          setStats({
+            pendingRewards: parseFloat(res.stats.pendingRewards || 0),
+            availableBalance: parseFloat(res.stats.availableBalance || 0),
+            pendingBalance: parseFloat(res.stats.pendingBalance || 0),
+            totalReferrals: res.stats.totalReferrals || 0,
+            totalEarned: parseFloat(res.stats.totalEarned || 0),
+          });
+          setRecentTransactions(res.recentTransactions || []);
+        }
+      });
+    };
+    setLoading(false);
+
+    fetchData();
+    const interval = setInterval(fetchData, 5000); // every 5s
+    return () => clearInterval(interval);
+  }, []);
 
   const achievements = [
     {
@@ -90,144 +70,185 @@ export default function UserDashboard() {
   return (
     <div className="min-h-screen bg-black">
       <PageHeader
-        title="Dashboard"
-        description="Welcome back! Here's your performance overview."
+        title={`Welcome, ${user.name || "User"}!`}
+        description="Here's your performance overview."
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="space-y-8">
-          {/* Stats Cards */}
-          <div className="grid md:grid-cols-4 gap-6">
-            {stats.map((stat, i) => (
-              <Card
-                key={i}
-                className="bg-black border-red-500/20 p-6 hover:border-red-500/40 transition"
-              >
+        {loading ? (
+          <div className="flex justify-center items-center h-60">
+            <Loader />
+          </div>
+        ) : (
+          <div className="space-y-8">
+            {/* Stats Cards */}
+            <div className="grid md:grid-cols-5 gap-6">
+              <Card className="bg-black border-red-500/20 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-400 text-sm mb-1">{stat.label}</p>
+                    <p className="text-gray-400 text-sm mb-1">
+                      Pending Rewards
+                    </p>
                     <p className="text-3xl font-bold text-white">
-                      {stat.value}
+                      {formatCurrency(stats.pendingRewards * 100)}
                     </p>
                   </div>
-                  <stat.icon className={`w-12 h-12 ${stat.color} opacity-20`} />
+                  <Award className="w-12 h-12 text-red-500 opacity-20" />
                 </div>
               </Card>
-            ))}
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Recent Transactions */}
-            <Card className="bg-black border-red-500/20">
-              <CardHeader className="border-b border-red-500/20">
-                <CardTitle className="text-white flex items-center gap-2">
-                  <ArrowUpRight className="w-5 h-5 text-green-400" />
-                  Recent Transactions
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-6">
-                <div className="space-y-4">
-                  {recentTransactions.map((tx) => (
-                    <div
-                      key={tx.id}
-                      className="flex items-center justify-between p-4 bg-black/50 rounded-lg border border-red-500/10 hover:border-red-500/30 transition"
-                    >
-                      <div className="flex items-center gap-3">
+              <Card className="bg-black border-red-500/20 p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-gray-400 text-sm mb-1">
+                      Available Balance
+                    </p>
+                    <p className="text-3xl font-bold text-white">
+                      {formatCurrency(stats.availableBalance * 100)}
+                    </p>
+                  </div>
+                  <Wallet className="w-12 h-12 text-green-400 opacity-20" />
+                </div>
+              </Card>
+
+              <Card className="bg-black border-red-500/20 p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-gray-400 text-sm mb-1">
+                      Pending Balance
+                    </p>
+                    <p className="text-3xl font-bold text-white">
+                      {formatCurrency(stats.pendingBalance * 100)}
+                    </p>
+                  </div>
+                  <Wallet className="w-12 h-12 text-orange-400 opacity-20" />
+                </div>
+              </Card>
+
+              <Card className="bg-black border-red-500/20 p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-gray-400 text-sm mb-1">
+                      Total Referrals
+                    </p>
+                    <p className="text-3xl font-bold text-white">
+                      {stats.totalReferrals}
+                    </p>
+                  </div>
+                  <Users className="w-12 h-12 text-blue-400 opacity-20" />
+                </div>
+              </Card>
+
+              <Card className="bg-black border-red-500/20 p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-gray-400 text-sm mb-1">Total Earned</p>
+                    <p className="text-3xl font-bold text-white">
+                      {formatCurrency(stats.totalEarned * 100)}
+                    </p>
+                  </div>
+                  <TrendingUp className="w-12 h-12 text-yellow-400 opacity-20" />
+                </div>
+              </Card>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Recent Transactions */}
+              <Card className="bg-black border-red-500/20">
+                <CardHeader className="border-b border-red-500/20">
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <ArrowUpRight className="w-5 h-5 text-green-400" />
+                    Recent Transactions
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-6">
+                  {recentTransactions.length === 0 ? (
+                    <p className="text-gray-400 text-center">
+                      No recent transactions
+                    </p>
+                  ) : (
+                    <div className="space-y-4">
+                      {recentTransactions.map((tx, i) => (
                         <div
-                          className={`p-2 rounded-lg ${
-                            tx.type === "credit"
-                              ? "bg-green-600/20"
-                              : "bg-red-600/20"
-                          }`}
+                          key={i}
+                          className="flex items-center justify-between p-4 bg-black/50 rounded-lg border border-red-500/10 hover:border-red-500/30 transition"
                         >
-                          {tx.type === "credit" ? (
-                            <ArrowDownLeft className="w-4 h-4 text-green-400" />
-                          ) : (
-                            <ArrowUpRight className="w-4 h-4 text-red-400" />
-                          )}
-                        </div>
-                        <div>
-                          <p className="text-white font-medium">
-                            {tx.description}
+                          <div className="flex items-center gap-3">
+                            <div
+                              className={`p-2 rounded-lg ${
+                                tx.type === "credit"
+                                  ? "bg-green-600/20"
+                                  : "bg-red-600/20"
+                              }`}
+                            >
+                              {tx.type === "credit" ? (
+                                <ArrowDownLeft className="w-4 h-4 text-green-400" />
+                              ) : (
+                                <ArrowUpRight className="w-4 h-4 text-red-400" />
+                              )}
+                            </div>
+                            <div>
+                              <p className="text-white font-medium">
+                                {tx.notes || "Transaction"}
+                              </p>
+                              <p className="text-sm text-gray-400">
+                                {new Date(tx.createdAt).toLocaleString()}
+                              </p>
+                            </div>
+                          </div>
+                          <p
+                            className={`font-bold ${
+                              tx.type === "credit"
+                                ? "text-green-400"
+                                : "text-red-400"
+                            }`}
+                          >
+                            {tx.type === "credit" ? "+" : "-"}
+                            {formatCurrency(parseFloat(tx.amount) * 100)}
                           </p>
-                          <p className="text-sm text-gray-400">{tx.date}</p>
                         </div>
-                      </div>
-                      <p
-                        className={`font-bold ${
-                          tx.type === "credit"
-                            ? "text-green-400"
-                            : "text-red-400"
-                        }`}
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Achievements */}
+              <Card className="bg-black border-red-500/20">
+                <CardHeader className="border-b border-red-500/20">
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <Award className="w-5 h-5 text-yellow-400" />
+                    Achievements
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-6">
+                  <div className="space-y-4">
+                    {achievements.map((achievement, i) => (
+                      <div
+                        key={i}
+                        className="p-4 bg-black/50 rounded-lg border border-red-500/10 hover:border-red-500/30 transition"
                       >
-                        {tx.type === "credit" ? "+" : ""}
-                        {formatCurrency(tx.amount * 100)}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Achievements */}
-            <Card className="bg-black border-red-500/20">
-              <CardHeader className="border-b border-red-500/20">
-                <CardTitle className="text-white flex items-center gap-2">
-                  <Award className="w-5 h-5 text-yellow-400" />
-                  Achievements
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-6">
-                <div className="space-y-4">
-                  {achievements.map((achievement, i) => (
-                    <div
-                      key={i}
-                      className="p-4 bg-black/50 rounded-lg border border-red-500/10 hover:border-red-500/30 transition"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-lg bg-yellow-600/20">
-                          <achievement.icon className="w-5 h-5 text-yellow-400" />
-                        </div>
-                        <div>
-                          <p className="text-white font-medium">
-                            {achievement.title}
-                          </p>
-                          <p className="text-sm text-gray-400">
-                            {achievement.description}
-                          </p>
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 rounded-lg bg-yellow-600/20">
+                            <achievement.icon className="w-5 h-5 text-yellow-400" />
+                          </div>
+                          <div>
+                            <p className="text-white font-medium">
+                              {achievement.title}
+                            </p>
+                            <p className="text-sm text-gray-400">
+                              {achievement.description}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
-
-          {/* Quick Stats */}
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="bg-black border-red-500/20 p-6">
-              <p className="text-gray-400 text-sm mb-2">Conversion Rate</p>
-              <p className="text-3xl font-bold text-white mb-2">8.5%</p>
-              <div className="w-full bg-red-900/20 rounded-full h-2">
-                <div
-                  className="bg-red-600 h-2 rounded-full"
-                  style={{ width: "85%" }}
-                ></div>
-              </div>
-            </Card>
-            <Card className="bg-black border-red-500/20 p-6">
-              <p className="text-gray-400 text-sm mb-2">Reward Points</p>
-              <p className="text-3xl font-bold text-white mb-2">2,450</p>
-              <p className="text-sm text-gray-400">+250 this month</p>
-            </Card>
-            <Card className="bg-black border-red-500/20 p-6">
-              <p className="text-gray-400 text-sm mb-2">Account Level</p>
-              <p className="text-3xl font-bold text-white mb-2">Gold</p>
-              <p className="text-sm text-gray-400">Next: Platinum</p>
-            </Card>
-          </div>
-        </div>
+        )}
       </main>
     </div>
   );

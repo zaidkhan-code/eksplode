@@ -145,48 +145,7 @@ export default function LedgerPage() {
             </Button>
           </div>
 
-          {/* Stats */}
-          <div className="grid md:grid-cols-4 gap-4">
-            <Card className="bg-black border-red-500/20 p-4">
-              <p className="text-gray-400 text-sm">Total Entries</p>
-              <p className="text-2xl font-bold text-white mt-1">
-                {filtered.length}
-              </p>
-            </Card>
-            <Card className="bg-black border-red-500/20 p-4">
-              <p className="text-gray-400 text-sm">Total Credits</p>
-              <p className="text-2xl font-bold text-green-400 mt-1">
-                {formatCurrency(
-                  filtered
-                    .filter((e) => e.type === "credit")
-                    .reduce((sum, e) => sum + e.amount, 0)
-                )}
-              </p>
-            </Card>
-            <Card className="bg-black border-red-500/20 p-4">
-              <p className="text-gray-400 text-sm">Total Debits</p>
-              <p className="text-2xl font-bold text-red-400 mt-1">
-                {formatCurrency(
-                  filtered
-                    .filter((e) => e.type === "debit")
-                    .reduce((sum, e) => sum + e.amount, 0)
-                )}
-              </p>
-            </Card>
-            <Card className="bg-black border-red-500/20 p-4">
-              <p className="text-gray-400 text-sm">Net Balance</p>
-              <p className="text-2xl font-bold text-white mt-1">
-                {formatCurrency(
-                  filtered.reduce(
-                    (sum, e) =>
-                      sum + (e.type === "credit" ? e.amount : -e.amount),
-                    0
-                  )
-                )}
-              </p>
-            </Card>
-          </div>
-
+        
           <Card className="bg-black border-red-500/20">
             <CardContent className="p-0">
               <DataTable
