@@ -30,7 +30,7 @@ export default function SuccessPage() {
       </div>
 
       {/* Order Summary Card */}
-      <div className="bg-[#111] border border-gray-800 rounded-2xl shadow-lg hover:shadow-red-600/40 transition-all duration-300 w-full max-w-md p-6 mb-8">
+      {/* <div className="bg-[#111] border border-gray-800 rounded-2xl shadow-lg hover:shadow-red-600/40 transition-all duration-300 w-full max-w-md p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4 text-red-500">
           Order Summary
         </h2>
@@ -53,7 +53,7 @@ export default function SuccessPage() {
             <span>Nov 04, 2025</span>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-4">

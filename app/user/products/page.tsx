@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import Loader from "@/components/ui/Loader";
 import useApi from "@/lib/useApi"; // ✅ your custom hook
 import Link from "next/link";
+import { formatCurrency } from "@/lib/utils";
 
 const API_IMAGE = process.env.NEXT_PUBLIC_API_URL_IMAGE;
 
@@ -122,13 +123,13 @@ export default function UserProductsPage() {
                       <div className="bg-red-900/20 p-2 rounded border border-red-500/20">
                         <p className="text-xs text-gray-400">Price</p>
                         <p className="font-semibold text-red-500">
-                          ${((product?.priceCents || 0) / 100).toFixed(2)}
+                          {formatCurrency(product?.priceCents)}
                         </p>
                       </div>
                       <div className="bg-green-900/20 p-2 rounded border border-green-500/20">
                         <p className="text-xs text-gray-400">Reward</p>
                         <p className="font-semibold text-green-400">
-                          +${product?.rewardCents || 0}
+                          {formatCurrency(product?.rewardCents || 0)}
                         </p>
                       </div>
                     </div>

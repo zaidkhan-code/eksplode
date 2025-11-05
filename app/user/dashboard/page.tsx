@@ -13,7 +13,7 @@ import {
   Target,
   Zap,
 } from "lucide-react";
-import { formatCurrency } from "@/lib/utils";
+import { formatCurrency, formatDate } from "@/lib/utils";
 import useApi from "@/lib/useApi";
 import Loader from "@/components/ui/Loader";
 import { useAuth } from "@/components/Context/AuthContext";
@@ -89,7 +89,7 @@ export default function UserDashboard() {
                       Pending Rewards
                     </p>
                     <p className="text-3xl font-bold text-white">
-                      {formatCurrency(stats.pendingRewards * 100)}
+                      {formatCurrency(stats.pendingRewards)}
                     </p>
                   </div>
                   <Award className="w-12 h-12 text-red-500 opacity-20" />
@@ -103,7 +103,7 @@ export default function UserDashboard() {
                       Available Balance
                     </p>
                     <p className="text-3xl font-bold text-white">
-                      {formatCurrency(stats.availableBalance * 100)}
+                      {formatCurrency(stats.availableBalance)}
                     </p>
                   </div>
                   <Wallet className="w-12 h-12 text-green-400 opacity-20" />
@@ -117,7 +117,7 @@ export default function UserDashboard() {
                       Pending Balance
                     </p>
                     <p className="text-3xl font-bold text-white">
-                      {formatCurrency(stats.pendingBalance * 100)}
+                      {formatCurrency(stats.pendingBalance)}
                     </p>
                   </div>
                   <Wallet className="w-12 h-12 text-orange-400 opacity-20" />
@@ -143,7 +143,7 @@ export default function UserDashboard() {
                   <div>
                     <p className="text-gray-400 text-sm mb-1">Total Earned</p>
                     <p className="text-3xl font-bold text-white">
-                      {formatCurrency(stats.totalEarned * 100)}
+                      {formatCurrency(stats.totalEarned)}
                     </p>
                   </div>
                   <TrendingUp className="w-12 h-12 text-yellow-400 opacity-20" />
@@ -191,7 +191,7 @@ export default function UserDashboard() {
                                 {tx.notes || "Transaction"}
                               </p>
                               <p className="text-sm text-gray-400">
-                                {new Date(tx.createdAt).toLocaleString()}
+                                {formatDate(tx?.createdAt)}
                               </p>
                             </div>
                           </div>
@@ -203,7 +203,7 @@ export default function UserDashboard() {
                             }`}
                           >
                             {tx.type === "credit" ? "+" : "-"}
-                            {formatCurrency(parseFloat(tx.amount) * 100)}
+                            {tx.amount && formatCurrency(tx.amount)}
                           </p>
                         </div>
                       ))}

@@ -10,6 +10,7 @@ import { Search, Share2, ShoppingCart } from "lucide-react";
 import useApi from "@/lib/useApi";
 import Loader from "@/components/ui/Loader";
 import { Header } from "@/components/ui/Navbar";
+import { formatCurrency } from "@/lib/utils";
 
 // Mock data
 const mockProducts = [
@@ -147,7 +148,7 @@ export default function ProductsPage() {
                   <div className="space-y-2">
                     <div className=" flex justify-between items-center">
                       <span className="text-2xl font-bold text-red-500">
-                        ${(product?.priceCents / 100).toFixed(2)}
+                        {formatCurrency(product?.priceCents)}
                       </span>
                       {/* <span className="text-sm bg-red-900/30 text-red-400 px-2 py-1 rounded">
                       +${(product?.rewardCents / 100).toFixed(2)} reward

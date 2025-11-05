@@ -11,6 +11,7 @@ import useApi from "@/lib/useApi";
 import { toast } from "sonner";
 import Image from "next/image";
 import Loader from "@/components/ui/Loader";
+import { formatCurrency } from "@/lib/utils";
 
 interface Product {
   _id: string;
@@ -114,7 +115,7 @@ export default function MerchantProductsPage() {
                     </h3>
                     <div className="flex items-center justify-between mt-2">
                       <span className="text-lg font-bold text-red-500">
-                        ${(product.priceCents / 100).toFixed(2)}
+                        ${product.priceCents.toFixed(2)}
                       </span>
                       <Badge
                         className={
@@ -132,19 +133,19 @@ export default function MerchantProductsPage() {
                     <div className="bg-red-900/20 p-2 rounded border border-red-500/20">
                       <p className="text-gray-400">Reward</p>
                       <p className="font-semibold text-red-400">
-                        ${(product.rewardCents / 100).toFixed(2)}
+                        ${formatCurrency(product.rewardCents)}
                       </p>
                     </div>
                     <div className="bg-red-900/20 p-2 rounded border border-red-500/20">
                       <p className="text-gray-400">Sales</p>
                       <p className="font-semibold text-white">
-                        {product?.totalSales || 0}
+                        {formatCurrency(product?.totalSales || 0)}
                       </p>
                     </div>
                     <div className="col-span-2 bg-red-900/20 p-2 rounded border border-red-500/20">
                       <p className="text-gray-400">Total Revenue</p>
                       <p className="font-semibold text-white">
-                        ${product?.totalRevenueCents || 0}
+                        {formatCurrency(product?.totalRevenueCents || 0)}
                       </p>
                     </div>
                   </div>

@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import useApi from "@/lib/useApi";
 import Loader from "@/components/ui/Loader";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
+import { formatCurrency } from "@/lib/utils";
 
 export default function ProductDetailPage({ loginUser = false }) {
   const params = useParams();
@@ -222,14 +223,14 @@ export default function ProductDetailPage({ loginUser = false }) {
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-gray-400">Price</span>
                     <span className="text-3xl font-bold text-red-500">
-                      ${(product?.priceCents / 100).toFixed(2)}
+                      {formatCurrency(product?.priceCents || 0)}
                     </span>
                   </div>
                   {accessToken && (
                     <div className="flex justify-between items-center">
                       <span className="text-gray-400">Reward</span>
                       <span className="text-2xl font-bold text-green-400">
-                        +${(product?.rewardCents / 100).toFixed(2)}
+                        {formatCurrency(product?.rewardCents || 0)}
                       </span>
                     </div>
                   )}
@@ -281,7 +282,7 @@ export default function ProductDetailPage({ loginUser = false }) {
                 </h2>
                 <p className="text-gray-400">
                   Share this product and earn $
-                  {(product?.rewardCents / 100).toFixed(2)} for each sale
+                  {formatCurrency(product?.rewardCents || 0)} for each sale
                 </p>
               </div>
 

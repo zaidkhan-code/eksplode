@@ -101,8 +101,8 @@ export default function CreateProduct() {
     const payload = {
       name: formData.name,
       description: formData.description,
-      priceCents: parseFloat(formData.price) * 100,
-      rewardCents: parseFloat(formData.reward) * 100,
+      priceCents: parseFloat(formData.price),
+      rewardCents: parseFloat(formData.reward),
       active: formData.active,
       image: formData.imageUrl, // ✅ sending URL directly
     };
