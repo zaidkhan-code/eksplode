@@ -115,7 +115,7 @@ export default function MerchantProductsPage() {
                     </h3>
                     <div className="flex items-center justify-between mt-2">
                       <span className="text-lg font-bold text-red-500">
-                        ${product.priceCents.toFixed(2)}
+                        {formatCurrency(product.priceCents)}
                       </span>
                       <Badge
                         className={
@@ -133,7 +133,7 @@ export default function MerchantProductsPage() {
                     <div className="bg-red-900/20 p-2 rounded border border-red-500/20">
                       <p className="text-gray-400">Reward</p>
                       <p className="font-semibold text-red-400">
-                        ${formatCurrency(product.rewardCents)}
+                        {formatCurrency(product.rewardCents)}
                       </p>
                     </div>
                     <div className="bg-red-900/20 p-2 rounded border border-red-500/20">

@@ -42,6 +42,7 @@ export function Sidebar() {
         href: "/merchant/product/create",
         icon: FileText,
       },
+      { label: "Orders", href: "/merchant/orders", icon: ShoppingBag },
       { label: "Profile", href: "/merchant/profile", icon: User },
     ],
     admin: [
