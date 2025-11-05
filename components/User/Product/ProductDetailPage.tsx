@@ -16,8 +16,8 @@ export default function ProductDetailPage({ loginUser = false }) {
   const params = useParams();
   const router = useRouter();
   const { user, Logout, getStoredAuthData } = useAuth();
-  console.log(user, "user data please");
   const { accessToken } = getStoredAuthData();
+  console.log(user, "user data please", accessToken);
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
