@@ -75,10 +75,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setIsLoading(false);
         if (status) {
           toast.success(res?.message || "Login successful!");
-          if (res?.accessToken)
-            localStorage.setItem("accessToken", res?.accessToken);
-          if (res?.refreshToken)
-            localStorage.setItem("refreshToken", res?.refreshToken);
+          localStorage.setItem("accessToken", res?.tokens?.accessToken);
+          localStorage.setItem("refreshToken", res?.tokens?.refreshToken);
           if (res?.user) {
             localStorage.setItem("user", JSON.stringify(res.user));
             setUser(res.user);
