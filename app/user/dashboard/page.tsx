@@ -16,10 +16,11 @@ import {
 import { formatCurrency } from "@/lib/utils";
 import useApi from "@/lib/useApi";
 import Loader from "@/components/ui/Loader";
+import { useAuth } from "@/components/Context/AuthContext";
 
 export default function UserDashboard() {
   const [recentTransactions, setRecentTransactions] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({
     pendingRewards: 0,
     availableBalance: 0,
@@ -27,14 +28,12 @@ export default function UserDashboard() {
     totalReferrals: 0,
     totalEarned: 0,
   });
-  const [user, setUser] = useState({ name: "", email: "" });
+  const { user } = useAuth();
 
   useEffect(() => {
-    setLoading(true);
     const fetchData = () => {
       useApi("user/dashboard", { method: "GET" }, (res, status) => {
         if (status) {
-          setUser(res.user);
           setStats({
             pendingRewards: parseFloat(res.stats.pendingRewards || 0),
             availableBalance: parseFloat(res.stats.availableBalance || 0),
@@ -43,10 +42,10 @@ export default function UserDashboard() {
             totalEarned: parseFloat(res.stats.totalEarned || 0),
           });
           setRecentTransactions(res.recentTransactions || []);
+          setLoading(false);
         }
       });
     };
-    setLoading(false);
 
     fetchData();
     const interval = setInterval(fetchData, 5000); // every 5s

@@ -140,6 +140,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         Logout,
         getStoredAuthData,
         protectAuthPages,
+        setUser,
       }}
     >
       {children}

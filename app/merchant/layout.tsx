@@ -1,8 +1,6 @@
 "use client";
 
 import type React from "react";
-
-import { Sidebar } from "@/components/sidebar";
 import { LayoutWrapper } from "@/components/LayoutSystem/LayoutWrapper";
 import ProtectedLayout from "@/components/LayoutSystem/ProtectedLayout";
 

@@ -24,11 +24,11 @@ export default function MerchantDashboard() {
       useApi("merchant/dashboard", { method: "GET" }, (res, status) => {
         if (!status) return;
         setData(res);
+        setLoading(false);
       });
     };
 
     fetchData(); // initial call
-    setLoading(false);
     const interval = setInterval(fetchData, 5000); // every 5s
     return () => clearInterval(interval);
   }, []);

@@ -123,7 +123,7 @@ export function Sidebar() {
                   className="flex items-center gap-3 px-4 py-3 w-full text-gray-400 hover:text-white hover:bg-red-900/10 rounded-lg transition"
                 >
                   <img
-                    src={"/download (5).jpeg"}
+                    src={user?.profilePic || "/download (5).jpeg"}
                     alt="Profile"
                     className="w-10 h-10 rounded-full border border-red-600 object-cover"
                   />
