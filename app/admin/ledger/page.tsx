@@ -145,7 +145,6 @@ export default function LedgerPage() {
             </Button>
           </div>
 
-        
           <Card className="bg-black border-red-500/20">
             <CardContent className="p-0">
               <DataTable

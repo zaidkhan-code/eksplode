@@ -21,7 +21,7 @@
   --accent-foreground: oklch(1 0 0);
   --destructive: #dc2626;
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.922 0 0);
+  --border: oklch(0.577 0.245 27.325);
   --input: oklch(0.922 0 0);
   --ring: #dc2626;
   --chart-1: #dc2626;
@@ -57,7 +57,7 @@
   --accent-foreground: oklch(1 0 0);
   --destructive: #dc2626;
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.269 0 0);
+  --border: oklch(0.577 0.245 27.325);
   --input: oklch(0.269 0 0);
   --ring: #dc2626;
   --chart-1: #dc2626;
@@ -123,4 +123,10 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+.PhoneInputCountry {
+  display: none !important;
+}
+.PhoneInputInput {
+  outline: none !important;
 }

@@ -13,6 +13,7 @@ import Switch from "react-switch";
 import useApi from "@/lib/useApi";
 import { uploadImageAction } from "@/app/actions/uploadImageAction"; // 👈 server action
 import Loader from "@/components/ui/Loader";
+import GlobalSwitch from "@/components/ui/Switch";
 
 export default function CreateProduct() {
   const router = useRouter();
@@ -236,7 +237,7 @@ export default function CreateProduct() {
                       onChange={(e) =>
                         setFormData({ ...formData, reward: e.target.value })
                       }
-                      className="mt-2 bg-black border-red-500/20 text-white"
+                      className="mt-2 "
                     />
                   </div>
                 </div>
@@ -261,7 +262,7 @@ export default function CreateProduct() {
                   <label className="text-sm font-medium text-white">
                     Active
                   </label>
-                  <Switch
+                  <GlobalSwitch
                     onChange={(checked) =>
                       setFormData({ ...formData, active: checked })
                     }
