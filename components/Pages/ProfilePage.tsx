@@ -394,7 +394,7 @@ export default function ProfilePage() {
                       type="tel"
                       value={formData.zellePhone}
                       onChange={(e) =>
-                        setFormData({ ...formData, zellePhone: e.target.value })
+                        setFormData({ ...formData, zellePhone: e })
                       }
                       placeholder="+1 (555) 123-4567"
                       inputMode="tel"
