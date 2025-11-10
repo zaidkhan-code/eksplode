@@ -1,30 +1,57 @@
-# eksplode DAC frontend
+eksplode DAC frontend
 
-_Automatically synced with your [v0.app](https://v0.app) deployments_
+Overview
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/pilot-s-projects/v0-eksplode-dac-frontend)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/mhZsDXhlkNP)
+This repository contains the frontend for the Eksplode DAC project.
+All changes are deployed automatically to Vercel.
 
-## Overview
-
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
-
-## Deployment
+Deployment
 
 Your project is live at:
 
-**[https://vercel.com/pilot-s-projects/v0-eksplode-dac-frontend](https://vercel.com/pilot-s-projects/v0-eksplode-dac-frontend)**
+https://eksplode.vercel.app/
 
-## Build your app
+Features Implemented
+Authentication & User Management
 
-Continue building your app on:
+Implemented register/login with JWT or session-based authentication.
 
-**[https://v0.app/chat/mhZsDXhlkNP](https://v0.app/chat/mhZsDXhlkNP)**
+Enforced role-based access on API routes.
 
-## How It Works
+User profile and payment profile can be successfully updated.
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+Full auth flow deployed on staging.
+
+Merchant & User Dashboards
+
+Merchant dashboard allows creation, editing, and deletion of products and rewards.
+
+User dashboard shows pending → available reward lifecycle.
+
+Dashboards fully functional with role-specific access.
+
+Product & Sharing
+
+Public product catalog with detailed product pages.
+
+Implemented share link & QR code generation using HMAC signatures.
+
+Verified share → click attribution is correctly recorded in the database.
+
+Payments & Orders
+
+Stripe Checkout integration with webhooks in test mode.
+
+Orders and reward allocations are recorded correctly.
+
+Verified webhook event flow end-to-end.
+
+How It Works
+
+Create and modify your project.
+
+Deploy changes to Vercel.
+
+Users and merchants can access their dashboards according to role.
+
+Orders, rewards, and shares are tracked automatically.
