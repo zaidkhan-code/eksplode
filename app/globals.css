@@ -130,3 +130,33 @@
 .PhoneInputInput {
   outline: none !important;
 }
+/* ===== Dark + Thick Black-Red Scrollbar ===== */
+
+/* Firefox */
+html {
+  scrollbar-width: thick;
+  scrollbar-color: #b30000 #000000; /* thumb | track */
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 14px; /* thicker */
+}
+
+::-webkit-scrollbar-track {
+  background: #000000; /* pure dark black */
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #cc0000,
+    #4d0000
+  ); /* deep red → darker red */
+  border-radius: 12px;
+  border: 2px solid #000; /* clean border for dark effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #e60000, #660000);
+}

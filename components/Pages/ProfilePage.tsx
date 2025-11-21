@@ -190,7 +190,7 @@ export default function ProfilePage() {
               <CardContent className="space-y-6 pt-6">
                 {/* Profile Picture */}
                 <div className="flex items-center gap-4">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden bg-red-900/30 flex items-center justify-center">
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden bg-red-900/30 flex items-center overflow-visible justify-center">
                     {preview ? (
                       <img
                         src={preview}
@@ -208,7 +208,7 @@ export default function ProfilePage() {
                           onChange={handleImageChange}
                           className="absolute inset-0 opacity-0 cursor-pointer"
                         />
-                        <div className="absolute bottom-0 right-0 bg-red-700 p-1 rounded-full">
+                        <div className="absolute bottom-0 right-0 z-50 bg-red-700 p-1 rounded-full">
                           <Camera className="w-4 h-4 text-white" />
                         </div>
                       </>
@@ -269,45 +269,6 @@ export default function ProfilePage() {
                 )}
               </CardContent>
             </Card>
-
-            {/* Security Section */}
-            {/* <Card className="bg-black border-red-500/20">
-              <CardHeader className="border-b border-red-500/20">
-                <CardTitle className="flex items-center gap-2 text-white">
-                  <Shield className="w-5 h-5" />
-                  Security
-                </CardTitle>
-                <CardDescription className="text-gray-400">
-                  Manage your account security
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4 pt-6">
-                <Button className="w-full justify-start gap-2 bg-red-900/20 text-red-400 hover:bg-red-900/40 border border-red-500/30">
-                  <Lock className="w-4 h-4" />
-                  Change Password
-                </Button>
-                <Button className="w-full justify-start gap-2 bg-red-900/20 text-red-400 hover:bg-red-900/40 border border-red-500/30">
-                  <Mail className="w-4 h-4" />
-                  Update Email
-                </Button>
-              </CardContent>
-            </Card> */}
-
-            {/* Logout Section */}
-            {/* <Card className="bg-red-900/20 border-red-500/30">
-              <CardHeader className="border-b border-red-500/30">
-                <CardTitle className="text-red-400">Danger Zone</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-6">
-                <Button
-                  onClick={logout}
-                  className="w-full justify-start gap-2 bg-red-600 hover:bg-red-700 text-white"
-                >
-                  <LogOut className="w-4 h-4" />
-                  Logout
-                </Button>
-              </CardContent>
-            </Card> */}
           </div>
         )}
 
@@ -329,7 +290,7 @@ export default function ProfilePage() {
               <div className="grid grid-cols-2 gap-4">
                 {/* Zelle Option */}
                 <div
-                  className={`cursor-pointer border rounded-lg p-4 flex flex-col items-center transition-all duration-200 ${
+                  className={`cursor-pointer border rounded-lg p-4 col-span-2 flex flex-col items-center transition-all duration-200 ${
                     formData.paymentMethod === "zelle"
                       ? "border-red-600 bg-red-900/20"
                       : "border-red-500/20 hover:border-red-500/40"
@@ -349,7 +310,7 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Walmart Option */}
-                <div
+                {/* <div
                   className={`cursor-pointer border rounded-lg p-4 flex flex-col items-center transition-all duration-200 ${
                     formData.paymentMethod === "walmart"
                       ? "border-red-600 bg-red-900/20"
@@ -365,7 +326,7 @@ export default function ProfilePage() {
                 >
                   <Gift className="w-8 h-8 text-red-400 mb-2" />
                   <p className="text-white font-medium">Walmart eGift Card</p>
-                </div>
+                </div> */}
               </div>
 
               {/* ✅ Conditional Inputs */}

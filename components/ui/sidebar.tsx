@@ -10,6 +10,8 @@ import {
   LogOut,
   Menu,
   X,
+  Users,
+  Store,
   CreditCard,
   FileText,
   Settings,
@@ -56,8 +58,10 @@ export function Sidebar() {
     admin: [
       { label: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
       { label: "Ledger", href: "/admin/ledger", icon: FileText },
-      { label: "Payouts", href: "/admin/payouts", icon: CreditCard },
-      { label: "Adjustments", href: "/admin/adjustments", icon: Settings },
+      // { label: "Payouts", href: "/admin/payouts", icon: CreditCard },
+      // { label: "Adjustments", href: "/admin/adjustments", icon: Settings },
+      { label: "Users", href: "/admin/users", icon: Users }, // New Users link
+      { label: "Merchants", href: "/admin/merchants", icon: Store }, // New Merchants link
     ],
   };
 

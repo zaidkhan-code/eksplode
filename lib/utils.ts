@@ -5,8 +5,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatCurrency(cents: number): string {
-  return `$${cents?.toFixed(2)}`;
+export function formatCurrency(cents: number | string | null | undefined) {
+  const value = Number(cents); // ensures it is a number
+  if (isNaN(value)) return "$0.00"; // fallback if value is invalid
+
+  return "$" + value?.toFixed(2);
 }
 
 export function parseCurrency(value: string): number {
@@ -14,12 +17,12 @@ export function parseCurrency(value: string): number {
 }
 
 export function formatBalance(cents: number): string {
-  return `$${(cents / 100).toFixed(2)}`;
+  return `$${cents?.toFixed(2)}`;
 }
 
 export function formatDate(date: string | Date): string {
   const d = typeof date === "string" ? new Date(date) : date;
-  return d.toLocaleDateString("en-US", {
+  return d?.toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",

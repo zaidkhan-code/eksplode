@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           }
           router.push(`/${res?.user?.role}/dashboard`);
         } else {
-          toast.error(res?.message || "Invalid email or password!");
+          toast.error(res?.error || "Invalid email or password!");
         }
       }
     );

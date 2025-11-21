@@ -1,10 +1,8 @@
 "use client";
-
 import type React from "react";
-
-import { Sidebar } from "@/components/sidebar";
 import { LayoutWrapper } from "@/components/LayoutSystem/LayoutWrapper";
 import ProtectedLayout from "@/components/LayoutSystem/ProtectedLayout";
+import { AdminContextProvider } from "@/components/Context/AdminContext";
 
 export default function AdminLayout({
   children,
@@ -12,8 +10,10 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ProtectedLayout allowedRole="admin">
-      <LayoutWrapper>{children}</LayoutWrapper>
-    </ProtectedLayout>
+    <AdminContextProvider>
+      <ProtectedLayout allowedRole="admin">
+        <LayoutWrapper>{children}</LayoutWrapper>
+      </ProtectedLayout>
+    </AdminContextProvider>
   );
 }
