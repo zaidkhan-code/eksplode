@@ -55,7 +55,6 @@ export default function LedgerPage() {
       }
     );
   };
-
   useEffect(() => {
     fetchLedger(1);
   }, [filterStatus, searchTerm]);
@@ -67,7 +66,7 @@ export default function LedgerPage() {
   const handleRowSelection = (rows) => {
     setSelectedRows(rows);
   };
-
+   
   function CloseTopBarAndPaymentModal() {
     setOpenPaymentModal(false);
     setSelectedRows([]);

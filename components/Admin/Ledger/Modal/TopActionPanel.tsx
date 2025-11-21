@@ -33,6 +33,7 @@ export default function TopActionPanel({
         if (status) {
           toast.success("ledger is successfully updated!");
           fetchLedger();
+          onClose();
         } else {
           toast.error(res?.message);
         }
@@ -88,9 +89,7 @@ export default function TopActionPanel({
             <span className="hidden sm:block">
               {isLoading ? "Updating..." : "Mark as Available"}
             </span>
-            <span className="sm:hidden">
-              {isLoading ? "..." : "Available"}
-            </span>
+            <span className="sm:hidden">{isLoading ? "..." : "Available"}</span>
           </Button>
 
           {/* Close Button (Icon Only) */}
