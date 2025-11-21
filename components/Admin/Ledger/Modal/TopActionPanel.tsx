@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import useApi from "@/lib/useApi";
-import { DollarSign, Ban, X, CheckCircle } from "lucide-react";
+import { DollarSign, Ban, X, CheckCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { useState } from "react";
 
 export default function TopActionPanel({
   selectedRows,
@@ -13,8 +14,10 @@ export default function TopActionPanel({
   setOpenPaymentModal: (open: boolean) => void;
   onClose: () => void;
 }) {
+  const [isLoading, setIsLoading] = useState(false);
   const ledgerIds = selectedRows?.map((item) => item?._id);
   function updateStatus() {
+    setIsLoading(true);
     useApi(
       "admin/bulk-Update-Ledger-Status",
       {
@@ -26,6 +29,7 @@ export default function TopActionPanel({
         },
       },
       (res, status) => {
+        setIsLoading(false);
         if (status) {
           toast.success("ledger is successfully updated!");
           fetchLedger();
@@ -73,11 +77,20 @@ export default function TopActionPanel({
           {/* Mark as Available */}
           <Button
             onClick={updateStatus}
-            className="bg-blue-600 hover:bg-blue-700 flex items-center gap-1 justify-center text-sm"
+            disabled={isLoading}
+            className="bg-blue-600 hover:bg-blue-700 flex items-center gap-1 justify-center text-sm disabled:opacity-70"
           >
-            <CheckCircle size={16} />
-            <span className="hidden sm:block">Mark as Available</span>
-            <span className="sm:hidden">Available</span>
+            {isLoading ? (
+              <Loader2 size={16} className="animate-spin" />
+            ) : (
+              <CheckCircle size={16} />
+            )}
+            <span className="hidden sm:block">
+              {isLoading ? "Updating..." : "Mark as Available"}
+            </span>
+            <span className="sm:hidden">
+              {isLoading ? "..." : "Available"}
+            </span>
           </Button>
 
           {/* Close Button (Icon Only) */}
