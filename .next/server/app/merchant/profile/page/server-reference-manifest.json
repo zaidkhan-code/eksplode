@@ -1,0 +1,20 @@
+{
+  "node": {
+    "40903c2bd2c23723e4a5b255fbd6e4221e804e58e3": {
+      "workers": {
+        "app/merchant/profile/page": {
+          "moduleId": 44239,
+          "async": false,
+          "exportedName": "uploadImageAction",
+          "filename": "app/actions/uploadImageAction.tsx"
+        }
+      },
+      "layer": {
+        "app/merchant/profile/page": "action-browser"
+      },
+      "exportedName": "uploadImageAction",
+      "filename": "app/actions/uploadImageAction.tsx"
+    }
+  },
+  "edge": {}
+}

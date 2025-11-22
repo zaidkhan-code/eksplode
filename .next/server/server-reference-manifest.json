@@ -1,0 +1,49 @@
+{
+  "node": {
+    "40903c2bd2c23723e4a5b255fbd6e4221e804e58e3": {
+      "workers": {
+        "app/admin/ledger/page": {
+          "moduleId": 77406,
+          "async": false,
+          "exportedName": "uploadImageAction",
+          "filename": "app/actions/uploadImageAction.tsx"
+        },
+        "app/merchant/product/[id]/edit/page": {
+          "moduleId": 28461,
+          "async": false,
+          "exportedName": "uploadImageAction",
+          "filename": "app/actions/uploadImageAction.tsx"
+        },
+        "app/merchant/product/create/page": {
+          "moduleId": 43486,
+          "async": false,
+          "exportedName": "uploadImageAction",
+          "filename": "app/actions/uploadImageAction.tsx"
+        },
+        "app/merchant/profile/page": {
+          "moduleId": 44239,
+          "async": false,
+          "exportedName": "uploadImageAction",
+          "filename": "app/actions/uploadImageAction.tsx"
+        },
+        "app/user/profile/page": {
+          "moduleId": 33572,
+          "async": false,
+          "exportedName": "uploadImageAction",
+          "filename": "app/actions/uploadImageAction.tsx"
+        }
+      },
+      "layer": {
+        "app/admin/ledger/page": "action-browser",
+        "app/merchant/product/[id]/edit/page": "action-browser",
+        "app/merchant/product/create/page": "action-browser",
+        "app/merchant/profile/page": "action-browser",
+        "app/user/profile/page": "action-browser"
+      },
+      "filename": "app/actions/uploadImageAction.tsx",
+      "exportedName": "uploadImageAction"
+    }
+  },
+  "edge": {},
+  "encryptionKey": "YZnaAQlLCXIOpWfS4agC80Sufl1ZWit32AdOke5130c="
+}

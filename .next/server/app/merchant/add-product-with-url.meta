@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/merchant/layout,_N_T_/merchant/add-product-with-url/layout,_N_T_/merchant/add-product-with-url/page,_N_T_/merchant/add-product-with-url"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/merchant/add-product-with-url/__PAGE__",
+    "/merchant/add-product-with-url",
+    "/merchant",
+    "/_index"
+  ]
+}
