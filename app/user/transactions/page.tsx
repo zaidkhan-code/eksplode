@@ -15,21 +15,31 @@ export default function TransactionsPage() {
   const [loading, setLoading] = useState(true);
   const [filterType, setFilterType] = useState("all");
 
-  useEffect(() => {
-    setLoading(true);
-    useApi(
-      "user/transactions", // API endpoint
-      { method: "GET" },
-      (res, status) => {
-        if (status) {
-          setTransactionList(res?.transactions || []);
-          setLoading(false);
-        } else {
-          setLoading(false);
-          toast.error(res?.message || "Failed to fetch transactions");
-        }
+  const fetchTransactions = async () => {
+    // Only set loading to true if there is no data yet
+    if (transactionList.length === 0) setLoading(true);
+
+    useApi("user/transactions", { method: "GET" }, (res, status) => {
+      if (status) {
+        setTransactionList(res?.transactions || []);
+      } else {
+        toast.error(res?.message || "Failed to fetch transactions");
       }
-    );
+      // Stop loading after response
+      setLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    // Initial fetch
+    fetchTransactions();
+
+    // Interval for polling every 5 seconds
+    const interval = setInterval(() => {
+      fetchTransactions();
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const getStatusColor = (status: string) => {

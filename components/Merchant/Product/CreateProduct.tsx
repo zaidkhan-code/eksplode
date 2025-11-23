@@ -46,8 +46,8 @@ export default function CreateProduct() {
           const p = res.product;
           setFormData({
             name: p.name,
-            price: (p.priceCents / 100).toString(),
-            reward: (p.rewardCents / 100).toString(),
+            price: p.priceCents,
+            reward: p.rewardCents,
             description: p.description,
             imageUrl: p.image || "",
             active: p.active,
