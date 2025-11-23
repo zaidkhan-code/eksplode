@@ -1,1 +1,9 @@
-{}
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/auth/login/page": "app/auth/login/page.js",
+  "/merchant/dashboard/page": "app/merchant/dashboard/page.js",
+  "/merchant/orders/page": "app/merchant/orders/page.js",
+  "/merchant/product/[id]/edit/page": "app/merchant/product/[id]/edit/page.js",
+  "/merchant/products/page": "app/merchant/products/page.js",
+  "/page": "app/page.js"
+}
