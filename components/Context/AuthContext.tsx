@@ -83,7 +83,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             localStorage.setItem("user", JSON.stringify(res.user));
             setUser(res.user);
           }
-          router.push(`/${res?.user?.role}/dashboard`);
+          if (res?.user?.role == "merchant" && res?.user?.webhookSecret) {
+            router.push("/merchant/webhook-setup");
+          } else {
+            router.push(`/${res?.user?.role}/dashboard`);
+          }
         } else {
           toast.error(res?.error || "Invalid email or password!");
         }

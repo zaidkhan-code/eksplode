@@ -104,7 +104,7 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/axios/lib/axios.js [app-ssr] (ecmascript)");
 ;
-const baseUrl = ("TURBOPACK compile-time value", "https://dac.c5m.world/api/api/");
+const baseUrl = ("TURBOPACK compile-time value", "http://localhost:5000/api/");
 const useApi = async (url, options = {}, callBack, notProtected = false)=>{
     let response = null;
     let error = null;

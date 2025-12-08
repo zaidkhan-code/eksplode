@@ -96,7 +96,7 @@ export default function MerchantDashboard() {
             </div>
 
             {/* Recent Orders */}
-            <Card className="bg-black border-red-500/20">
+            {/* <Card className="bg-black border-red-500/20">
               <CardHeader className="border-b border-red-500/20">
                 <CardTitle className="text-white flex items-center gap-2">
                   <ShoppingCart className="w-5 h-5 text-green-400" />
@@ -137,7 +137,7 @@ export default function MerchantDashboard() {
                   </div>
                 )}
               </CardContent>
-            </Card>
+            </Card> */}
           </div>
         </main>
       )}

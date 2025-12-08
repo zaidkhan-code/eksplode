@@ -1,21 +1,5 @@
 {
-  "node": {
-    "40e7b0e004d0ba02129af75fcdb21f93787da77968": {
-      "workers": {
-        "app/merchant/product/[id]/edit/page": {
-          "moduleId": "[project]/.next-internal/server/app/merchant/product/[id]/edit/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/actions/uploadImageAction.tsx [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false,
-          "exportedName": "uploadImageAction",
-          "filename": "app/actions/uploadImageAction.tsx"
-        }
-      },
-      "layer": {
-        "app/merchant/product/[id]/edit/page": "action-browser"
-      },
-      "filename": "app/actions/uploadImageAction.tsx",
-      "exportedName": "uploadImageAction"
-    }
-  },
+  "node": {},
   "edge": {},
   "encryptionKey": "J+IM79EQjBkH3/ZRCCYf2Ic/9SKwfZjwwUqLX7s4bnk="
 }

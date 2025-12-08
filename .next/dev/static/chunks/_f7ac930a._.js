@@ -9,7 +9,7 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/axios/lib/axios.js [app-client] (ecmascript)");
 ;
-const baseUrl = ("TURBOPACK compile-time value", "https://dac.c5m.world/api/api/");
+const baseUrl = ("TURBOPACK compile-time value", "http://localhost:5000/api/");
 const useApi = async (url, options = {}, callBack, notProtected = false)=>{
     let response = null;
     let error = null;
@@ -130,7 +130,11 @@ const AuthProvider = ({ children })=>{
                         localStorage.setItem("user", JSON.stringify(res.user));
                         setUser(res.user);
                     }
-                    router.push(`/${res?.user?.role}/dashboard`);
+                    if (res?.user?.role == "merchant" && res?.user?.webhookSecret) {
+                        router.push("/merchant/webhook-setup");
+                    } else {
+                        router.push(`/${res?.user?.role}/dashboard`);
+                    }
                 } else {
                     __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(res?.error || "Invalid email or password!");
                 }
@@ -213,7 +217,7 @@ const AuthProvider = ({ children })=>{
         children: children
     }, void 0, false, {
         fileName: "[project]/components/Context/AuthContext.tsx",
-        lineNumber: 134,
+        lineNumber: 138,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };

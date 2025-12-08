@@ -120,13 +120,13 @@ export default function UserProductsPage() {
 
                     {/* Price and Reward */}
                     <div className="grid grid-cols-2 gap-2">
-                      <div className="bg-red-900/20 p-2 rounded border border-red-500/20">
+                      {/* <div className="bg-red-900/20 p-2 rounded border border-red-500/20">
                         <p className="text-xs text-gray-400">Price</p>
                         <p className="font-semibold text-red-500">
                           {formatCurrency(product?.priceCents)}
                         </p>
-                      </div>
-                      <div className="bg-green-900/20 p-2 rounded border border-green-500/20">
+                      </div> */}
+                      <div className="bg-green-900/20 p-2 col rounded border border-green-500/20">
                         <p className="text-xs text-gray-400">Reward</p>
                         <p className="font-semibold text-green-400">
                           {formatCurrency(product?.rewardCents || 0)}

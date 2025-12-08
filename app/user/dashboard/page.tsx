@@ -151,8 +151,7 @@ export default function UserDashboard() {
               </Card>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Recent Transactions */}
+            {/* <div className="grid md:grid-cols-2 gap-6">
               <Card className="bg-black border-red-500/20">
                 <CardHeader className="border-b border-red-500/20">
                   <CardTitle className="text-white flex items-center gap-2">
@@ -212,7 +211,6 @@ export default function UserDashboard() {
                 </CardContent>
               </Card>
 
-              {/* Achievements */}
               <Card className="bg-black border-red-500/20">
                 <CardHeader className="border-b border-red-500/20">
                   <CardTitle className="text-white flex items-center gap-2">
@@ -245,7 +243,7 @@ export default function UserDashboard() {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </div> */}
           </div>
         )}
       </main>

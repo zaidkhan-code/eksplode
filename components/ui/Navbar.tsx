@@ -23,13 +23,6 @@ export const Header = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 items-center">
-          <Link
-            href="/products"
-            className="text-white hover:text-red-500 transition"
-          >
-            Products
-          </Link>
-
           {!user ? (
             <>
               <Link
@@ -75,14 +68,6 @@ export const Header = () => {
       {/* Mobile Dropdown */}
       {menuOpen && (
         <div className="md:hidden bg-black border-t border-red-900/40 px-4 pb-4 space-y-3 animate-fadeIn">
-          <Link
-            href="/products"
-            className="block text-white hover:text-red-500 transition"
-            onClick={() => setMenuOpen(false)}
-          >
-            Products
-          </Link>
-
           {!user ? (
             <>
               <Link
