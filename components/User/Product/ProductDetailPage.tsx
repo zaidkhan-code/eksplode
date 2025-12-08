@@ -254,7 +254,7 @@ export default function ProductDetailPage({ loginUser = false }) {
                   onClick={createCheckout}
                   className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-lg font-semibold"
                 >
-                  Share Now
+                  Buy Now
                 </Button>
               )}
 
