@@ -174,7 +174,7 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
 // Validate ../../../app/merchant/webhook-setup/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/merchant/webhook-setup">> = Specific
-  const handler = {} as typeof import("../../../app/merchant/webhook-setup/page.jsage.js")
+  const handler = {} as typeof import("../../../app/merchant/webhook-setup/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

@@ -10,6 +10,7 @@
     "/user/transactions/__PAGE__",
     "/user/transactions",
     "/user",
-    "/_index"
+    "/_index",
+    "/_head"
   ]
 }

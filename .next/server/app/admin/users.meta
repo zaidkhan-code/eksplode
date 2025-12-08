@@ -10,6 +10,7 @@
     "/admin/users/__PAGE__",
     "/admin/users",
     "/admin",
-    "/_index"
+    "/_index",
+    "/_head"
   ]
 }

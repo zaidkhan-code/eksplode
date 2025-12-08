@@ -10,6 +10,7 @@
     "/auth/register/__PAGE__",
     "/auth/register",
     "/auth",
-    "/_index"
+    "/_index",
+    "/_head"
   ]
 }

@@ -10,6 +10,7 @@
     "/merchant/profile/__PAGE__",
     "/merchant/profile",
     "/merchant",
-    "/_index"
+    "/_index",
+    "/_head"
   ]
 }

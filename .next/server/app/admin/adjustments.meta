@@ -10,6 +10,7 @@
     "/admin/adjustments/__PAGE__",
     "/admin/adjustments",
     "/admin",
-    "/_index"
+    "/_index",
+    "/_head"
   ]
 }

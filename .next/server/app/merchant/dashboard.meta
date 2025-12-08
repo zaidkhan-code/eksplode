@@ -10,6 +10,7 @@
     "/merchant/dashboard/__PAGE__",
     "/merchant/dashboard",
     "/merchant",
-    "/_index"
+    "/_index",
+    "/_head"
   ]
 }

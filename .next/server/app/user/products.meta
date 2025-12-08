@@ -10,6 +10,7 @@
     "/user/products/__PAGE__",
     "/user/products",
     "/user",
-    "/_index"
+    "/_index",
+    "/_head"
   ]
 }

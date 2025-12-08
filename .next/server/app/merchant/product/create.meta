@@ -11,6 +11,7 @@
     "/merchant/product/create",
     "/merchant/product",
     "/merchant",
-    "/_index"
+    "/_index",
+    "/_head"
   ]
 }

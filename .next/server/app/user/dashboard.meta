@@ -10,6 +10,7 @@
     "/user/dashboard/__PAGE__",
     "/user/dashboard",
     "/user",
-    "/_index"
+    "/_index",
+    "/_head"
   ]
 }

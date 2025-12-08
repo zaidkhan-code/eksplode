@@ -2,6 +2,12 @@
   "version": 4,
   "routes": {
     "/_global-error": {
+      "initialStatus": 500,
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/_global-error/layout,_N_T_/_global-error/page,_N_T_/_global-error"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -28,6 +34,11 @@
     },
     "/_not-found": {
       "initialStatus": 404,
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/_not-found/layout,_N_T_/_not-found/page,_N_T_/_not-found"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -53,6 +64,11 @@
       ]
     },
     "/admin/adjustments": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/adjustments/layout,_N_T_/admin/adjustments/page,_N_T_/admin/adjustments"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -78,6 +94,11 @@
       ]
     },
     "/admin/dashboard": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/dashboard/layout,_N_T_/admin/dashboard/page,_N_T_/admin/dashboard"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -103,6 +124,11 @@
       ]
     },
     "/admin/ledger": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/ledger/layout,_N_T_/admin/ledger/page,_N_T_/admin/ledger"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -128,6 +154,11 @@
       ]
     },
     "/admin/merchants": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/merchants/layout,_N_T_/admin/merchants/page,_N_T_/admin/merchants"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -153,6 +184,11 @@
       ]
     },
     "/admin/payouts": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/payouts/layout,_N_T_/admin/payouts/page,_N_T_/admin/payouts"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -178,6 +214,11 @@
       ]
     },
     "/admin/users": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/users/layout,_N_T_/admin/users/page,_N_T_/admin/users"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -203,6 +244,11 @@
       ]
     },
     "/auth/forgot-password": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/auth/layout,_N_T_/auth/forgot-password/layout,_N_T_/auth/forgot-password/page,_N_T_/auth/forgot-password"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -228,6 +274,11 @@
       ]
     },
     "/auth/login": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/auth/layout,_N_T_/auth/login/layout,_N_T_/auth/login/page,_N_T_/auth/login"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -253,6 +304,11 @@
       ]
     },
     "/auth/register": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/auth/layout,_N_T_/auth/register/layout,_N_T_/auth/register/page,_N_T_/auth/register"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -278,6 +334,11 @@
       ]
     },
     "/merchant/add-product-with-url": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/merchant/layout,_N_T_/merchant/add-product-with-url/layout,_N_T_/merchant/add-product-with-url/page,_N_T_/merchant/add-product-with-url"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -303,6 +364,11 @@
       ]
     },
     "/merchant/dashboard": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/merchant/layout,_N_T_/merchant/dashboard/layout,_N_T_/merchant/dashboard/page,_N_T_/merchant/dashboard"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -328,6 +394,11 @@
       ]
     },
     "/merchant/orders": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/merchant/layout,_N_T_/merchant/orders/layout,_N_T_/merchant/orders/page,_N_T_/merchant/orders"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -353,6 +424,11 @@
       ]
     },
     "/merchant/product/create": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/merchant/layout,_N_T_/merchant/product/layout,_N_T_/merchant/product/create/layout,_N_T_/merchant/product/create/page,_N_T_/merchant/product/create"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -378,6 +454,11 @@
       ]
     },
     "/merchant/products": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/merchant/layout,_N_T_/merchant/products/layout,_N_T_/merchant/products/page,_N_T_/merchant/products"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -403,6 +484,11 @@
       ]
     },
     "/merchant/profile": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/merchant/layout,_N_T_/merchant/profile/layout,_N_T_/merchant/profile/page,_N_T_/merchant/profile"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -428,6 +514,11 @@
       ]
     },
     "/merchant/webhook-setup": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/merchant/layout,_N_T_/merchant/webhook-setup/layout,_N_T_/merchant/webhook-setup/page,_N_T_/merchant/webhook-setup"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -453,6 +544,11 @@
       ]
     },
     "/": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/page,_N_T_/,_N_T_/index"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -478,6 +574,11 @@
       ]
     },
     "/user/dashboard": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/user/layout,_N_T_/user/dashboard/layout,_N_T_/user/dashboard/page,_N_T_/user/dashboard"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -503,6 +604,11 @@
       ]
     },
     "/user/products": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/user/layout,_N_T_/user/products/layout,_N_T_/user/products/page,_N_T_/user/products"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -528,6 +634,11 @@
       ]
     },
     "/user/profile": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/user/layout,_N_T_/user/profile/layout,_N_T_/user/profile/page,_N_T_/user/profile"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -553,6 +664,11 @@
       ]
     },
     "/user/transactions": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/user/layout,_N_T_/user/transactions/layout,_N_T_/user/transactions/page,_N_T_/user/transactions"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -581,8 +697,8 @@
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "4069b55ccba7c674db6cb5272d132b29",
-    "previewModeSigningKey": "2b1b96fd8df65704a2ac2b6c29eb6688db557336f5a75056329dacfd89709ad3",
-    "previewModeEncryptionKey": "ccf4afc9a6171d1a69e9b200680750195e898c31692b759afa04e10bbcd58237"
+    "previewModeId": "a51d7a45f4e624e8b941e5b75d20c425",
+    "previewModeSigningKey": "61cff72f6e358675b8511a3991d3d93e533ec01ee2da2c8a6ab65d7c412ea5cc",
+    "previewModeEncryptionKey": "77eee6fb0a2ee22e2815e22f57fbcd7cd9509c8ed6323e61b7095998b9bff23d"
   }
 }

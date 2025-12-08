@@ -32,6 +32,7 @@ export default function ProductDetailPage({ loginUser = false }) {
   const sharer = searchParams.get("sharer");
   const t = searchParams.get("t");
   const s = searchParams.get("s");
+  const attributeId = searchParams.get("attributeId");
 
   // ✅ Verify share link if parameters exist
   useEffect(() => {
@@ -156,7 +157,7 @@ export default function ProductDetailPage({ loginUser = false }) {
     return null; // Don't show anything while redirecting
   }
 
-  function createstipseshion() {
+  function createCheckout() {
     useApi(
       `orders/checkout`,
       {
@@ -165,6 +166,7 @@ export default function ProductDetailPage({ loginUser = false }) {
           productId: params?.id,
           email: user?.email,
           sessionId: s,
+          attributeid: attributeId,
         },
       },
       (res, status) => {
@@ -243,7 +245,7 @@ export default function ProductDetailPage({ loginUser = false }) {
 
               <div className="space-y-3">
                 <Button
-                  onClick={createstipseshion}
+                  onClick={createCheckout}
                   className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-lg font-semibold"
                 >
                   Buy Now

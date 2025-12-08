@@ -10,6 +10,7 @@
     "/admin/ledger/__PAGE__",
     "/admin/ledger",
     "/admin",
-    "/_index"
+    "/_index",
+    "/_head"
   ]
 }

@@ -10,6 +10,7 @@
     "/admin/payouts/__PAGE__",
     "/admin/payouts",
     "/admin",
-    "/_index"
+    "/_index",
+    "/_head"
   ]
 }

@@ -10,6 +10,7 @@
     "/merchant/orders/__PAGE__",
     "/merchant/orders",
     "/merchant",
-    "/_index"
+    "/_index",
+    "/_head"
   ]
 }

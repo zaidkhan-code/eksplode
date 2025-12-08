@@ -10,6 +10,7 @@
     "/merchant/add-product-with-url/__PAGE__",
     "/merchant/add-product-with-url",
     "/merchant",
-    "/_index"
+    "/_index",
+    "/_head"
   ]
 }
