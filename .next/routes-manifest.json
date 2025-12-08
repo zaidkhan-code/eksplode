@@ -155,10 +155,10 @@
       "namedRegex": "^/merchant/profile(?:/)?$"
     },
     {
-      "page": "/products",
-      "regex": "^/products(?:/)?$",
+      "page": "/merchant/webhook-setup",
+      "regex": "^/merchant/webhook\\-setup(?:/)?$",
       "routeKeys": {},
-      "namedRegex": "^/products(?:/)?$"
+      "namedRegex": "^/merchant/webhook\\-setup(?:/)?$"
     },
     {
       "page": "/success",

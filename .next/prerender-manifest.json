@@ -427,6 +427,31 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/merchant/webhook-setup": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/merchant/webhook-setup",
+      "dataRoute": "/merchant/webhook-setup.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/": {
       "experimentalBypassFor": [
         {
@@ -442,31 +467,6 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/",
       "dataRoute": "/index.rsc",
-      "prefetchDataRoute": null,
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/products": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "next-action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/products",
-      "dataRoute": "/products.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
         "host",
@@ -581,8 +581,8 @@
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "688f22f0b214267473202a28a43c6f09",
-    "previewModeSigningKey": "a55382b981d859088170224660893dd0cbb44977b1cbed015accfee31ee03c5b",
-    "previewModeEncryptionKey": "7fd39998e8b138c96426b110620302665a61fc8d95137592cb6a34fdeed00cb6"
+    "previewModeId": "4069b55ccba7c674db6cb5272d132b29",
+    "previewModeSigningKey": "2b1b96fd8df65704a2ac2b6c29eb6688db557336f5a75056329dacfd89709ad3",
+    "previewModeEncryptionKey": "ccf4afc9a6171d1a69e9b200680750195e898c31692b759afa04e10bbcd58237"
   }
 }
