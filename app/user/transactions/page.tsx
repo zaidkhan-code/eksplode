@@ -17,11 +17,10 @@ export default function TransactionsPage() {
 
   const fetchTransactions = async () => {
     // Only set loading to true if there is no data yet
-    if (transactionList.length === 0) setLoading(true);
-
     useApi("user/transactions", { method: "GET" }, (res, status) => {
       if (status) {
         setTransactionList(res?.transactions || []);
+        setLoading()
       } else {
         toast.error(res?.message || "Failed to fetch transactions");
       }
@@ -32,6 +31,7 @@ export default function TransactionsPage() {
 
   useEffect(() => {
     // Initial fetch
+    setLoading(true);
     fetchTransactions();
 
     // Interval for polling every 5 seconds

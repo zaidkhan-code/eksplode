@@ -19,7 +19,9 @@ export default function WebhookSetupPage() {
   const apiURL = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
   const handleCopy = () => {
-    navigator.clipboard.writeText(`${apiURL}webhook/${user?.id || user?._id}`);
+    navigator.clipboard.writeText(
+      `${apiURL}webhook/stripe/${user?.id || user?._id}`
+    );
     toast.success("Webhook URL copied!");
   };
 

@@ -123,15 +123,6 @@ export default function MerchantsPage() {
               { key: "email", label: "Email" },
 
               { key: "totalProducts", label: "Products", sortable: true },
-              { key: "totalOrder", label: "Orders", sortable: true },
-              {
-                key: "totalSales",
-                label: "Total Sales",
-                render: (value) => (
-                  <span className="text-red-400">{formatCurrency(value)}</span>
-                ),
-                sortable: true,
-              },
               {
                 key: "status",
                 label: "Status",

@@ -29,6 +29,15 @@ export default function CreateProduct() {
     active: true,
   });
 
+  const [errors, setErrors] = useState({
+    name: "",
+    price: "",
+    reward: "",
+    description: "",
+    imageUrl: "",
+    merchantSiteUrl: "",
+  });
+
   const [preview, setPreview] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -42,19 +51,19 @@ export default function CreateProduct() {
       `products/${productId}`,
       { method: "GET" },
       (res: any, status: boolean) => {
+        setPageLoading(false);
         if (status && res?.product) {
           const p = res.product;
           setFormData({
-            name: p.name,
-            price: p.priceCents,
-            reward: p.rewardCents,
-            description: p.description,
+            name: p.name || "",
+            price: p.priceCents || "",
+            reward: p.rewardCents || "",
+            description: p.description || "",
             imageUrl: p.image || "",
             merchantSiteUrl: p.merchantSiteUrl || "",
-            active: p.active,
+            active: p.active ?? true,
           });
           if (p.image) setPreview(p.image);
-          setPageLoading(false);
         }
       }
     );
@@ -84,21 +93,40 @@ export default function CreateProduct() {
     }
   };
 
+  // Validation
+  const validate = () => {
+    const newErrors: any = {};
+
+    if (!formData.name.trim()) newErrors.name = "Product name is required";
+    if (
+      !formData.price ||
+      isNaN(Number(formData.price)) ||
+      Number(formData.price) <= 0
+    )
+      newErrors.price = "Price must be a valid number greater than 0";
+    if (
+      !formData.reward ||
+      isNaN(Number(formData.reward)) ||
+      Number(formData.reward) < 0
+    )
+      newErrors.reward = "Reward must be a valid number (0 or greater)";
+    if (!formData.description.trim())
+      newErrors.description = "Description is required";
+    if (!formData.imageUrl.trim())
+      newErrors.imageUrl = "Product image is required";
+    if (!formData.merchantSiteUrl.trim())
+      newErrors.merchantSiteUrl = "Merchant URL is required";
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic validation
-    if (
-      !formData.name.trim() ||
-      !formData.price.trim() ||
-      !formData.reward.trim() ||
-      !formData.description.trim() ||
-      !formData.imageUrl.trim() ||
-      !formData.merchantSiteUrl.trim()
-    ) {
-      toast.error(
-        "Please fill all required fields including image and site URL."
-      );
+    if (!validate()) {
+      toast.error("Please fix the highlighted errors.");
       return;
     }
 
@@ -144,6 +172,7 @@ export default function CreateProduct() {
             : "Add a new product to your catalog"
         }
       />
+
       {pageLoading ? (
         <Loader />
       ) : (
@@ -193,6 +222,11 @@ export default function CreateProduct() {
                       </div>
                     )}
                   </label>
+                  {errors.imageUrl && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.imageUrl}
+                    </p>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -215,6 +249,9 @@ export default function CreateProduct() {
                     }
                     className="mt-2 bg-black border-red-500/20 text-white"
                   />
+                  {errors.name && (
+                    <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                  )}
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -231,6 +268,11 @@ export default function CreateProduct() {
                       }
                       className="mt-2 bg-black border-red-500/20 text-white"
                     />
+                    {errors.price && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.price}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label className="text-sm font-medium text-white">
@@ -243,12 +285,16 @@ export default function CreateProduct() {
                       onChange={(e) =>
                         setFormData({ ...formData, reward: e.target.value })
                       }
-                      className="mt-2"
+                      className="mt-2 bg-black border-red-500/20 text-white"
                     />
+                    {errors.reward && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.reward}
+                      </p>
+                    )}
                   </div>
                 </div>
 
-                {/* Merchant Site URL */}
                 <div>
                   <label className="text-sm font-medium text-white">
                     Merchant Site URL
@@ -265,6 +311,11 @@ export default function CreateProduct() {
                     }
                     className="mt-2 bg-black border-red-500/20 text-white"
                   />
+                  {errors.merchantSiteUrl && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.merchantSiteUrl}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -280,6 +331,11 @@ export default function CreateProduct() {
                     className="mt-2 w-full p-3 border border-red-500/20 rounded-lg bg-black text-white focus:outline-none focus:ring-2 focus:ring-red-600"
                     rows={4}
                   />
+                  {errors.description && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.description}
+                    </p>
+                  )}
                 </div>
 
                 {/* Active Toggle */}

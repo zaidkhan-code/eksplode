@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setIsLoading(false);
         if (status) {
           toast.success(res?.message || "Login successful!");
-
+          console.log(res, "check user response please");
           localStorage.setItem("accessToken", res?.accessToken);
 
           localStorage.setItem("refreshToken", res?.refreshToken);
@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             localStorage.setItem("user", JSON.stringify(res.user));
             setUser(res.user);
           }
-          if (res?.user?.role == "merchant" && res?.user?.webhookSecret) {
+          if (res?.user?.role == "merchant" && !res?.user?.webhookSecret) {
             router.push("/merchant/webhook-setup");
           } else {
             router.push(`/${res?.user?.role}/dashboard`);

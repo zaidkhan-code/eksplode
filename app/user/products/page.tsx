@@ -138,7 +138,7 @@ export default function UserProductsPage() {
                     <Link href={`/user/product/${product?._id}`}>
                       <Button className="w-full gap-2 bg-red-600 hover:bg-red-700">
                         <ShoppingCart className="w-4 h-4" />
-                        Buy Now
+                        Share Now
                       </Button>
                     </Link>
                   </CardContent>
