@@ -1,9 +1,5 @@
 {
   "app": {
-    "[project]/app/_not-found/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
     "[project]/app/admin/dashboard/page": [
       "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
       "static/media/797e433ab948586e-s.p.dbea232f.woff2"
@@ -12,43 +8,7 @@
       "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
       "static/media/797e433ab948586e-s.p.dbea232f.woff2"
     ],
-    "[project]/app/admin/merchants/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
-    "[project]/app/admin/users/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
     "[project]/app/auth/login/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
-    "[project]/app/auth/register/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
-    "[project]/app/merchant/dashboard/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
-    "[project]/app/merchant/product/[id]/edit/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
-    "[project]/app/merchant/product/create/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
-    "[project]/app/merchant/products/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
-    "[project]/app/merchant/profile/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
-    "[project]/app/merchant/webhook-setup/page": [
       "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
       "static/media/797e433ab948586e-s.p.dbea232f.woff2"
     ],
@@ -56,27 +16,7 @@
       "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
       "static/media/797e433ab948586e-s.p.dbea232f.woff2"
     ],
-    "[project]/app/product/[id]/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
     "[project]/app/user/dashboard/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
-    "[project]/app/user/product/[id]/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
-    "[project]/app/user/products/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
-    "[project]/app/user/profile/page": [
-      "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
-      "static/media/797e433ab948586e-s.p.dbea232f.woff2"
-    ],
-    "[project]/app/user/transactions/page": [
       "static/media/caa3a2e1cccd8315-s.p.853070df.woff2",
       "static/media/797e433ab948586e-s.p.dbea232f.woff2"
     ]

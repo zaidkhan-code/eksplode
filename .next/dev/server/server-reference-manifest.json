@@ -7,38 +7,10 @@
           "async": false,
           "exportedName": "uploadImageAction",
           "filename": "app/actions/uploadImageAction.tsx"
-        },
-        "app/merchant/product/[id]/edit/page": {
-          "moduleId": "[project]/.next-internal/server/app/merchant/product/[id]/edit/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/actions/uploadImageAction.tsx [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false,
-          "exportedName": "uploadImageAction",
-          "filename": "app/actions/uploadImageAction.tsx"
-        },
-        "app/merchant/product/create/page": {
-          "moduleId": "[project]/.next-internal/server/app/merchant/product/create/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/actions/uploadImageAction.tsx [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false,
-          "exportedName": "uploadImageAction",
-          "filename": "app/actions/uploadImageAction.tsx"
-        },
-        "app/merchant/profile/page": {
-          "moduleId": "[project]/.next-internal/server/app/merchant/profile/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/actions/uploadImageAction.tsx [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false,
-          "exportedName": "uploadImageAction",
-          "filename": "app/actions/uploadImageAction.tsx"
-        },
-        "app/user/profile/page": {
-          "moduleId": "[project]/.next-internal/server/app/user/profile/page/actions.js { ACTIONS_MODULE0 => \"[project]/app/actions/uploadImageAction.tsx [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
-          "async": false,
-          "exportedName": "uploadImageAction",
-          "filename": "app/actions/uploadImageAction.tsx"
         }
       },
       "layer": {
-        "app/admin/ledger/page": "action-browser",
-        "app/merchant/product/[id]/edit/page": "action-browser",
-        "app/merchant/product/create/page": "action-browser",
-        "app/merchant/profile/page": "action-browser",
-        "app/user/profile/page": "action-browser"
+        "app/admin/ledger/page": "action-browser"
       },
       "filename": "app/actions/uploadImageAction.tsx",
       "exportedName": "uploadImageAction"

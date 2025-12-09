@@ -20,7 +20,7 @@ export default function TransactionsPage() {
     useApi("user/transactions", { method: "GET" }, (res, status) => {
       if (status) {
         setTransactionList(res?.transactions || []);
-        setLoading()
+        setLoading(false)
       } else {
         toast.error(res?.message || "Failed to fetch transactions");
       }

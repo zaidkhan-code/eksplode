@@ -1,22 +1,7 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/admin/dashboard/page": "app/admin/dashboard/page.js",
   "/admin/ledger/page": "app/admin/ledger/page.js",
-  "/admin/merchants/page": "app/admin/merchants/page.js",
-  "/admin/users/page": "app/admin/users/page.js",
   "/auth/login/page": "app/auth/login/page.js",
-  "/auth/register/page": "app/auth/register/page.js",
-  "/merchant/dashboard/page": "app/merchant/dashboard/page.js",
-  "/merchant/product/[id]/edit/page": "app/merchant/product/[id]/edit/page.js",
-  "/merchant/product/create/page": "app/merchant/product/create/page.js",
-  "/merchant/products/page": "app/merchant/products/page.js",
-  "/merchant/profile/page": "app/merchant/profile/page.js",
-  "/merchant/webhook-setup/page": "app/merchant/webhook-setup/page.js",
   "/page": "app/page.js",
-  "/product/[id]/page": "app/product/[id]/page.js",
-  "/user/dashboard/page": "app/user/dashboard/page.js",
-  "/user/product/[id]/page": "app/user/product/[id]/page.js",
-  "/user/products/page": "app/user/products/page.js",
-  "/user/profile/page": "app/user/profile/page.js",
-  "/user/transactions/page": "app/user/transactions/page.js"
+  "/user/dashboard/page": "app/user/dashboard/page.js"
 }

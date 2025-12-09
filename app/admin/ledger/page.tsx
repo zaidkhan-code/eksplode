@@ -66,7 +66,7 @@ export default function LedgerPage() {
   const handleRowSelection = (rows) => {
     setSelectedRows(rows);
   };
-   
+
   function CloseTopBarAndPaymentModal() {
     setOpenPaymentModal(false);
     setSelectedRows([]);
@@ -78,12 +78,12 @@ export default function LedgerPage() {
     {
       key: "userName",
       label: "User Name",
-      render: (_, row) => row.userId.name,
+      render: (_, row) => row?.userId?.name,
     },
     {
-      key: "userName",
+      key: "_id",
       label: "Email",
-      render: (_, row) => row.userId.email,
+      render: (_, row) => row?.userId?.email,
     },
     // {
     //   key: "paymentMethod",
